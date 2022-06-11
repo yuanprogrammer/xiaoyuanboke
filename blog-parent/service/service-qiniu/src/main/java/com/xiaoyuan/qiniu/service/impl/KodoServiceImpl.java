@@ -28,7 +28,7 @@ import java.util.UUID;
 @Service
 public class KodoServiceImpl implements KodoService {
 
-    private static String ARTICLE_IMG_URL_PREFIX = "https://article.xiaoyuan-boke.com/";
+    private static String ARTICLE_IMG_URL_PREFIX = "七牛云kodo存储地址前缀";
 
     @Override
     public R uploadArticleImg(MultipartFile file, String folderName) {
