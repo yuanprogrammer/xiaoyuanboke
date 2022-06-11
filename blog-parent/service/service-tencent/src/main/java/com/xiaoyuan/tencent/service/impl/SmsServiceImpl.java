@@ -78,15 +78,15 @@ public class SmsServiceImpl implements SmsService {
              * 腾讯云短信小助手: https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81 */
 
             /* 短信应用ID: 短信SdkAppId在 [短信控制台] 添加应用后生成的实际SdkAppId，示例如1400006666 */
-            String sdkAppId = "1400676603";
+            String sdkAppId = "短信应用ID";
             req.setSmsSdkAppId(sdkAppId);
 
             /* 短信签名内容: 使用 UTF-8 编码，必须填写已审核通过的签名 */
-            String signName = "小袁编程学习站";
+            String signName = "短信签名内容";
             req.setSignName(signName);
 
             /* 模板 ID: 必须填写已审核通过的模板 ID */
-            String templateId = "1396027";
+            String templateId = "模板 ID";
             req.setTemplateId(templateId);
 
             /* 模板参数: 模板参数的个数需要与 TemplateId 对应模板的变量个数保持一致，若无模板参数，则设置为空 */
