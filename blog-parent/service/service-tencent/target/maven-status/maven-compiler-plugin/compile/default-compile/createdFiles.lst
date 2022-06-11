@@ -1,0 +1,5 @@
+com\xiaoyuan\tencent\service\SmsService.class
+com\xiaoyuan\tencent\service\CosService.class
+com\xiaoyuan\tencent\service\impl\CosServiceImpl.class
+com\xiaoyuan\tencent\service\impl\SmsServiceImpl.class
+com\xiaoyuan\tencent\utils\ConstantPropertiesUtils.class

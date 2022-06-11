@@ -1,0 +1,4 @@
+com\xiaoyuan\common\service\annotation\MultiRequestBody.class
+com\xiaoyuan\common\service\config\WebConfig.class
+com\xiaoyuan\common\service\handle\MultiRequestBodyArgumentResolver.class
+com\xiaoyuan\common\service\MailService.class

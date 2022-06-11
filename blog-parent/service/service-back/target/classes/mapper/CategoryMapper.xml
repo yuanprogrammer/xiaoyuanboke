@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoyuan.back.db.dao.CategoryMapper">
+
+    <!-- 自定义返回数据类型模板 -->
+    <resultMap id="categoryMap" type="com.xiaoyuan.back.vo.CategoryVo">
+        <!-- 父级分类（ID、分类名称、文章总数） 单个 对象 -->
+        <id property="id" column="id1"></id>
+        <result property="name" column="name1"></result>
+        <result property="count" column="count1"></result>
+        <!-- 子分类（ID、分类名、文章总数） 多个 List集合 -->
+        <collection property="children" ofType="com.xiaoyuan.back.vo.CategoryVo" javaType="list">
+            <id property="id" column="id2"></id>
+            <result property="name" column="name2"></result>
+            <result property="count" column="count2"></result>
+        </collection>
+    </resultMap>
+
+    <!--
+     查询所有分类的目录结构
+     父级分类 ==>> 子分类
+     -->
+    <select id="findCategoryList" resultMap="categoryMap">
+        select
+            -- 一级分类
+            cate1.id as id1,
+            cate1.name as name1,
+            cate2.count1,
+            -- 二级分类
+            cate3.id as id2,
+            cate3.name as name2,
+            cate4.count2
+
+        from xy_category cate1
+                 -- 左拼接, 查询父级分类的文章总数
+                 LEFT JOIN (SELECT category_id, count(*) as count1 FROM xy_article_category GROUP BY category_id) cate2 ON cate2.category_id = cate1.id
+            -- 左拼接, 查询所有子分类
+                 LEFT JOIN xy_category cate3 ON cate3.parent_id = cate1.id
+            -- 左拼接, 查询子分类的文章总数
+                 LEFT JOIN (SELECT category_id, count(*) as count2 FROM xy_article_category GROUP BY category_id) cate4 ON cate4.category_id = cate3.id
+        where cate1.parent_id = 0
+    </select>
+
+    <!--
+    通过某个父级分类的ID查询该父级的所有子分类
+    父级分类 ==>> 子分类
+    -->
+    <select id="getCategoryById" parameterType="int" resultMap="categoryMap">
+        select x.id as parentId, x.name as parentName, y.id as childrenId ,y.name as childrenName
+        from xy_category x
+        left join xy_category as y on y.parent_id = x.id
+        where x.id = #{id}
+    </select>
+
+    <!--
+    通过分类编号列表查询分类名称
+    @param: 编号列表
+    @returns: 名称
+    -->
+    <select id="findCategoryNameByIds" parameterType="list" resultType="string">
+        select name
+        from xy_category
+        where id in
+            <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+    </select>
+
+    <!--
+    通过分类编号查询完整的分类信息
+    @param: 编号列表
+    @return: 拼接的编号
+    -->
+    <select id="getCompleteCategoryByIds" parameterType="list" resultType="string">
+    select CONCAT_WS('-', y.id, x.id) as category
+    from xy_category x
+    left join xy_category y on y.id = x.parent_id
+    where x.id in
+    <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+        #{item}
+    </foreach>
+    </select>
+</mapper>

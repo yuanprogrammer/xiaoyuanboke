@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!-- 个人资料卡 -->
+<div class="main_style_2" th:fragment="side-personal">
+  <a @click="openProblemDialog()" title="问题反馈"><i class="fa fa-paper-plane-o bell" style="font-size: 18px;"></i></a>
+  <a @click="openSuggestDialog()" title="提交建议"><i class="fa fa-envelope msg" style="font-size: 18px;"></i></a>
+  <div class="outer-round">
+    <div class="border-round">
+      <div class="round2"></div>
+    </div>
+  </div>
+  <h3 class="head2">Yuan-Programmer</h3>
+  <p class="p3">@ 小袁博客</p>
+  <button class="cir"><i class="fa fa-edit edit"></i></button>
+  <div class="white">
+    <div class="row">
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 card-data" align="center">
+        <h1 th:text="${articleViewCount} ?: 0"></h1>
+        <span>总浏览量</span>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 card-data" align="center">
+        <h1 th:text="${articleTotal} ?: 0"></h1>
+        <span>发布文章</span>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4 card-data" align="center">
+        <h1 th:text="${messageTotal} ?: 0"></h1>
+        <span>留言数量</span>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 个人资料卡 -->
+<!-- 搜索 -->
+<div class="ibox-content" th:fragment="side-search">
+  <div class="side-search">
+    <form>
+      <input type="text" placeholder="请输入您要搜索的内容...">
+      <button type="submit"></button>
+    </form>
+  </div>
+</div>
+<!-- 搜索 -->
+<!-- 热门文章 -->
+<div class="ibox float-e-margins" th:fragment="side-hot">
+  <div class="ibox-title">
+    <h5>热门文章</h5>
+    <div class="ibox-tools">
+      <a class="collapse-link">
+        <i class="fa fa-chevron-up"></i>
+      </a>
+    </div>
+  </div>
+  <div class="ibox-content" th:each="item : ${newArticleList}">
+    <div class="row">
+      <div class="col-md-12">
+        <a th:href="'/home/article/detail/' + ${item.number}"><span th:text="${item.title}"></span></a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 热门文章 -->
+<!-- 文章档案 -->
+<div class="ibox float-e-margins" th:fragment="side-archive">
+  <div class="ibox-title">
+    <h5>文章档案</h5>
+    <div class="ibox-tools">
+      <a class="collapse-link">
+        <i class="fa fa-chevron-up"></i>
+      </a>
+    </div>
+  </div>
+  <div class="ibox-content">
+    <div class="row">
+      <div class="col-md-6" th:each="item : ${archivesList}">
+        <h4>[[${ item.archivesTime }]] <span class="badge badge-info m-l-md" th:text="${ item.count + ''}"></span></h4>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 文章档案 -->
+<!-- 最新文章 -->
+<div class="ibox float-e-margins" th:fragment="side-new">
+  <div class="ibox-title">
+    <h5>最新文章</h5>
+    <div class="ibox-tools">
+      <a class="collapse-link">
+        <i class="fa fa-chevron-up"></i>
+      </a>
+    </div>
+  </div>
+  <div class="ibox-content" th:each="item : ${hostArticleList}">
+    <div class="row">
+      <div class="col-md-12">
+        <a th:href="'/home/article/detail/' + ${item.number}"><span th:text="${item.title}"></span></a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 最新文章 -->
+</body>
+</html>

@@ -1,0 +1,216 @@
+* {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box
+}
+body {
+	padding: 0;
+	margin: 0
+}
+
+#notfound {
+	position: relative;
+	height: 80vh
+	
+}
+
+#notfound .notfound {
+	position: absolute;
+	left: 50%;
+	top: 60%;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%)
+}
+
+.notfound {
+	max-width: 710px;
+	width: 100%;
+	padding-left: 190px;
+	line-height: 1.4
+}
+
+.notfound .notfound-error {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 150px;
+	height: 150px
+}
+
+.notfound .notfound-error h1 {
+	font-family: 'Passion One', cursive;
+	color: #00b5c3;
+	font-size: 150px;
+	letter-spacing: 15.5px;
+	margin: 0;
+	font-weight: 900;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%)
+}
+
+.notfound h2 {
+	font-family: 'Raleway', sans-serif;
+	color: #292929;
+	font-size-: 28px;
+	font-weight-: 700;
+	text-transform: uppercase;
+	letter-spacing: 2.5px;
+	margin-top: 0
+}
+
+.notfound h1 {
+	font-family: 'Raleway', sans-serif;
+	color: #db2828;
+	font-size: 36px;
+	font-weight-: 700;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	margin-top: 0;
+	width: 100%
+}
+
+.notfound p {
+	font-family: 'Raleway', sans-serif;
+	font-size: 14px;
+	font-weight: 400;
+	margin-top: 0;
+	margin-bottom: 15px;
+	color: #333;
+	letter-spacing: 3px;
+}
+
+.notfound a {
+	font-family: 'Raleway', sans-serif;
+	font-size: 14px;
+	text-decoration: none;
+	text-transform: uppercase;
+	background: #fff;
+	display: inline-block;
+	padding: 15px 30px;
+	border-radius: 40px;
+	color: #292929;
+	font-weight: 700;
+	-webkit-box-shadow: 0 4px 15px -5px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 4px 15px -5px rgba(0, 0, 0, 0.3);
+	-webkit-transition: .2s all;
+	transition: .2s all
+}
+
+.notfound a:hover {
+	color: #fff;
+	background-color: #00b5c3
+}
+
+@media only screen and (max-width:480px) {
+	.notfound {
+		text-align: center
+	}
+
+	.notfound .notfound-error {
+		position: relative;
+		width: 100%;
+		margin-bottom: 15px
+	}
+
+	.notfound {
+		padding-left: 15px;
+		padding-right: 15px
+	}
+}
+
+/* 背景波浪 */
+.bottom {
+  font-family: 'Lato', sans-serif;
+  letter-spacing: 1px;
+  font-size:14px;
+  color: #333333;
+}
+
+.header {
+  position:relative;
+  background: linear-gradient(60deg, rgba(84,58,183,1) 0%, rgba(0,172,193,1) 100%);
+}
+.logo {
+  width:50px;
+  fill:white;
+  padding-right:15px;
+  display:inline-block;
+  vertical-align: middle;
+}
+
+.inner-header {
+  height:65vh;
+  width:100%;
+  margin: 0;
+  padding: 0;
+}
+
+.flex { /*Flexbox for containers*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.waves {
+  position:relative;
+  width: 100%;
+  height:15vh;
+  margin-bottom:-7px; /*Fix for safari gap*/
+  min-height:100px;
+  max-height:150px;
+}
+
+.content {
+  position:relative;
+  height:20vh;
+  text-align:center;
+  background-color: white;
+}
+
+/* Animation */
+
+.parallax > use {
+  animation: move-forever 25s cubic-bezier(.55,.5,.45,.5)     infinite;
+}
+.parallax > use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+}
+.parallax > use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+.parallax > use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 13s;
+}
+.parallax > use:nth-child(4) {
+  animation-delay: -5s;
+  animation-duration: 20s;
+}
+@keyframes move-forever {
+  0% {
+   transform: translate3d(-90px,0,0);
+  }
+  100% { 
+    transform: translate3d(85px,0,0);
+  }
+}
+/*Shrinking for mobile*/
+@media (max-width: 768px) {
+  .waves {
+    height:40px;
+    min-height:40px;
+  }
+  .content {
+    height:30vh;
+  }
+  h1 {
+    font-size:24px;
+  }
+}

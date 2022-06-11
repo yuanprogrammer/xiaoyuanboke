@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="author" content="小袁同学,1971788445@qq.com,广州新华学院">
+  <meta name="Keywords" content="小袁博客,小袁Java学习站,小袁Java学习平台,文章,博客,小袁博客,article,blog">
+  <meta name="description" content="小袁博客,小袁Java学习站,小袁Java学习平台,文章,博客,小袁博客,article,blog,分享Java相关的知识和经验以及各大框架的项目开发提供Java学习的圈子">
+  <meta http-equiv="content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+  <link rel="shortcut icon" href="/static/img/favicon.ico">
+  <link rel="stylesheet" href="/static/css/bootstrap.css"/>
+  <!-- 导航栏样式 -->
+  <link rel="stylesheet" href="/static/css/customer/header.css"/>
+  <!-- 页面布局样式 -->
+  <link rel="stylesheet" href="/static/css/customer/index.css"/>
+  <!-- 页脚样式 -->
+  <link rel="stylesheet" href="/static/css/customer/footer&cbl.css"/>
+  <!-- 音乐播放器样式 -->
+  <link rel="stylesheet" href="/static/css/customer/player.min.css"/>
+  <script type="text/javascript" src="/static/js/jquery-1.11.3.js"></script>
+  <script type="text/javascript" src="/static/js/bootstrap.js"></script>
+  <script type="text/javascript" src="/static/js/customer/index.js"></script>
+  <!-- 顶部导航栏 && 侧边工具栏 -->
+  <script type="text/javascript" src="/static/js/customer/template.js"></script>
+  <!-- 音乐播放器JS -->
+  <script type="text/javascript" src="/static/js/customer/player.min.js"></script>
+  <!-- element ui -->
+  <link rel="stylesheet" href="/static/css/element-ui.css">
+  <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+  <script src="/static/js/vue.js"></script>
+  <script src="/static/js/element-ui.js"></script>
+  <script src="/static/js/httpVueLoader.js"></script>
+  <title>小袁博客</title>
+</head>
+<body>
+<div id="main">
+  <!-- 导航栏 -->
+  <xy-navbar ref="xyNavbar" :user-info="userInfo"></xy-navbar>
+  <!-- 导航栏 -->
+
+  <div class="c">
+    <img class="img" src="/static/img/home_background.jpg"/>
+    <div class="video">
+      <video autoplay="autoplay" muted="muted" loop="loop">
+        <source type="video/mp4" src="https://blog.yuanprogrammer.com/home_background.mp4"></source>
+      </video>
+    </div>
+    <div class="cover">
+      <div class="container  cc2">
+        <div class="cover2">
+          <div class="co0-1">
+            <img class="img-circle m-t-xs" src="/static/img/b.jpg" alt="袁德伟"/>
+          </div>
+          <div class="co2-2">
+            <span>一名大三Java后端开发工程师</span>
+          </div>
+          <a class="co2-3" href="/home/home">跳 转 至 文 章 首 页</a>
+        </div>
+      </div>
+      <div class="container cc1">
+        <div class="cover1 col-lg-6 col-md-6 pull-right">
+          <div class="co0">
+            <img class="img-circle m-t-xs" src="/static/img/b.jpg" alt="袁德伟"/>
+          </div>
+          <div class="co2 hide" id="con">
+            <span>一名大三Java后端开发工程师<br>欢迎您来浏览我的个人博客平台</span>
+          </div>
+          <div class="co2" id="show"></div>
+          <a class="co3" href="/home/home">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            跳 转 至 文 章 首 页
+          </a>
+        </div>
+      </div>
+      <div class="container cc1">
+        <div class="coverA"><a href="">
+          <i class="glyphicon glyphicon-chevron-down"></i>
+        </a></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+  <div th:insert="common/common::footer"></div>
+  <!-- 页脚 -->
+
+  <!-- 右侧工具 -->
+  <div th:insert="common/common::right-toolbar"></div>
+  <!-- 右侧工具 -->
+
+</div>
+<!-- 音乐播放器 -->
+<div id="player"></div>
+<!-- 引入歌曲列表和配置信息 -->
+<script type="text/javascript" src="/static/js/customer/music.js"></script>
+<script src="/static/js/axios.min.js"></script>
+<script type="module">
+  import userOperation from "../static/js/common/navbar/userOperation.js";
+
+  // 使用httpVueLoader
+  Vue.use(httpVueLoader);
+
+  var app = new Vue({
+    el: '#main',
+    components: {
+      'xy-navbar': 'url:/static/component/navbar/index.vue',
+      'xy-feedback': 'url:/static/component/dialog/feedback.vue'
+    },
+    data() {
+      return {
+        userInfo: {}
+      }
+    },
+    methods: {
+      // 获取用户数据
+      getUserInfo() {},
+      // 退出登录
+      logout() {},
+    },
+    created() {
+      // 顶部个人相关方法
+      this.getUserInfo = userOperation.getUserInfo();
+      this.getUserInfo();
+      this.logout = userOperation.logout();
+      this.submitEditPersonal = userOperation.submitEditPersonal();
+      this.submitFindPassword = userOperation.submitFindPassword();
+      this.submitEditPassword = userOperation.submitEditPassword();
+      this.sendEmailCode = userOperation.sendEmailCode();
+      this.submitEditEmail = userOperation.submitEditEmail();
+      this.sendSmsCode = userOperation.sendSmsCode();
+      this.submitEditMobileNumber = userOperation.submitEditMobileNumber();
+    }
+  })
+</script>
+</body>
+</html>

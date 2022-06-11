@@ -1,0 +1,89 @@
+/* 左侧分类栏 */
+ul.domtree,
+ul.domtree ul {
+	padding: 0 0 0 2em;
+}
+
+ul.domtree .parent,
+ul.domtree .son {
+	margin-left: 5px;
+	font-size: 14px;
+	font-weight: 400;
+	font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+}
+
+ul.domtree .parent:hover,
+ul.domtree .son:hover {
+	cursor: pointer;
+	color: #ff557f;
+}
+
+ul.domtree .count {
+	float: right;
+	color: #999aaa;
+	font-size: 14px;
+	margin-right: 5px;
+}
+
+ul.domtree li {
+	list-style: none;
+	position: relative;
+	margin-top: 10px;
+	color: #555666;
+}
+
+ul.domtree>li:first-child:before {
+	border-style: none none dashed none;
+}
+
+ul.domtree>li:last-child {
+}
+
+ul.domtree li:before {
+	position: absolute;
+	content: '';
+	top: -0.01em;
+	left: -0.7em;
+	width: 10px;
+	height: 10px;
+	border-style: none none dashed dashed;
+	border-width: 0.05em;
+	border-color: #aaa;
+}
+
+ul.domtree li:not(:last-child):after {
+	position: absolute;
+	content: '';
+	top: 0.7em;
+	left: -0.7em;
+	bottom: -10px;
+	border-style: none none none dashed;
+	border-width: 0.05em;
+	border-color: #aaa;
+}
+
+/* 文章列表 */
+.article-list .digest {
+	margin-top: 10px;
+	color: #555666;
+	font-weight: 400;
+	text-overflow: -o-ellipsis-lastline;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+.article-list .footer-info {
+	margin-top: 10px;
+	clear: both;
+	width: 100%;
+	overflow: hidden;
+}
+
+.article-list .footer-info span {
+	margin-right: 13px;
+	font-weight: normal;
+	color: #555666;
+}

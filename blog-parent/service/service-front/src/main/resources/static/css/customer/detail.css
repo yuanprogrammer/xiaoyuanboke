@@ -1,0 +1,187 @@
+.article-detail {
+	padding: 30px 60px;
+}
+
+/* 右侧悬浮 */
+.side-fixed {
+	position: fixed;
+	bottom: 0px;
+	z-index: 98;
+	right: 51px;
+	width: 475px;
+	top: auto;
+}
+
+/* 标题 */
+.article-detail .title span {
+	font-size: 24px;
+	font-weight: bold;
+	color: #000000;
+}
+
+/* 文章信息 */
+.article-detail .info-box {
+	background-color: #f8f8f8;
+	border-radius: 8px;
+	margin-top: 20px;
+	padding-left: 20px;
+	height: 75px;
+	box-sizing: content-box;
+}
+
+.article-detail .info {
+	display: flex;
+	padding-top: 10px;
+}
+
+.article-detail .info span {
+	margin-right: 20px;
+	color: #9a9a9a;
+	font-weight: 600;
+	font-size: 14px;
+}
+
+.article-detail .info i {
+	/* color: #0984e3; */
+	color: #a2a2a2;
+}
+
+/* 标签 */
+.article-detail .tags {
+	margin-top: 10px;
+}
+
+.el-tag {
+	margin-right: 5px;
+}
+
+.article-detail .tags span.t1 {
+	color: #9a9a9a;
+	font-weight: 500;
+	font-size: 14px;
+}
+
+/* 正文 */
+.article-detail .content {
+	margin-top: 30px;
+}
+
+/* 正文底部钉子栏 */
+.article-detail .bottom-tools {
+	z-index: 999;
+	bottom: 0px;
+	width: 953px;
+	height: 60px;
+	padding: 0px 60px;
+	box-shadow: 0px -2px 2px #f3f3f3,
+	0px 2px 2px #f0f0f0;
+	background-color: #fff;
+}
+
+.article-detail .bottom-tools img.avatar {
+	height: 40px;
+	width: 40px;
+	border-radius: 100%;
+}
+
+.article-detail .bottom-tools-active {
+	position: fixed;
+	left: 50px;
+}
+
+.article-detail .bottom-tools-no {
+	position: relative;
+	top: 30px;
+	right: 60px;
+}
+
+/* 钉子内部 */
+.tool-left {
+	display: flex;
+	align-items: center;
+}
+
+.tool-left .name {
+	margin-left: 15px;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.t-right {
+	flex-grow: 1;
+}
+
+.t-right ul.operation {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.t-right ul.operation li {
+	margin-left: 20px;
+	cursor: pointer;
+}
+
+ul.operation li img.icon {
+	width: 20px;
+	height: 20px;
+	margin-bottom: 5px;
+}
+
+ul.operation span {
+	margin-left: 5px;
+	font-size: 16px;
+	color: #bfbfbf;
+}
+
+ul.operation .active {
+	color: #F56C6C !important;
+}
+
+/* 发布评论区域 */
+.com-button .login {
+	color: #000000;
+	font-size: 14px;
+}
+
+.com-button .login button {
+	font-weight: 600;
+}
+
+/* 评论 */
+.article-detail .comment h2 {
+	font-weight: 600;
+	margin-bottom: 10px;
+}
+
+.article-detail .comment img {
+	border-radius: 100%;
+}
+
+.article-detail .comment .name {
+	color: #606266;
+	font-size: 13px;
+	font-weight: 600;
+}
+
+.article-detail .comment p {
+	letter-spacing: 0.5px;
+}
+
+.right-tools {
+	display: inline-block;
+	float: right;
+}
+
+.right-tools span {
+	cursor: pointer;
+	font-size: 11px;
+}
+
+.right-tools span:nth-child(1) {
+	color: #E6A23C;
+	margin-right: 10px;
+}
+
+.right-tools span:nth-child(2) {
+	color: #F56C6C;
+}

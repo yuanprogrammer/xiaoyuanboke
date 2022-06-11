@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoyuan.back.db.dao.ArticleCategoryMapper">
+
+    <!--
+        据文章编号查询他的所属分类
+        @param{long}: 文章编号
+        @return: 查询到的分类编号
+    -->
+    <select id="findCategoryIdsByArticleId" parameterType="long" resultType="int">
+        select category_id
+        from xy_article_category
+        where article_id = #{articleId}
+    </select>
+</mapper>

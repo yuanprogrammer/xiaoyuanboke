@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoyuan.front.db.dao.CategoryMapper">
+
+    <!-- 自定义返回数据类型模板 -->
+    <resultMap id="categoryMap" type="com.xiaoyuan.front.vo.CategoryVo">
+        <!-- 父级分类（ID、分类名称、文章总数） 单个 对象 -->
+        <id property="id" column="id1"></id>
+        <result property="name" column="name1"></result>
+        <result property="count" column="count1"></result>
+        <!-- 子分类（ID、分类名、文章总数） 多个 List集合 -->
+        <collection property="children" ofType="com.xiaoyuan.front.vo.CategoryVo" javaType="list">
+            <id property="id" column="id2"></id>
+            <result property="name" column="name2"></result>
+            <result property="count" column="count2"></result>
+        </collection>
+    </resultMap>
+
+    <!--
+     查询所有分类的目录结构
+     父级分类 ==>> 子分类
+     -->
+    <select id="findCategoryList" resultMap="categoryMap">
+        select
+        -- 一级分类
+        cate1.id as id1,
+        cate1.name as name1,
+        cate2.count1,
+        -- 二级分类
+        cate3.id as id2,
+        cate3.name as name2,
+        cate4.count2
+
+        from xy_category cate1
+            -- 左拼接, 查询父级分类的文章总数
+            LEFT JOIN (SELECT category_id, count(*) as count1 FROM xy_article_category GROUP BY category_id) cate2 ON cate2.category_id = cate1.id
+            -- 左拼接, 查询所有子分类
+            LEFT JOIN xy_category cate3 ON cate3.parent_id = cate1.id
+            -- 左拼接, 查询子分类的文章总数
+            LEFT JOIN (SELECT category_id, count(*) as count2 FROM xy_article_category GROUP BY category_id) cate4 ON cate4.category_id = cate3.id
+        where cate1.parent_id = 0
+    </select>
+
+    <!-- 查询某篇文章的分类 -->
+    <select id="findArticleCategory" parameterType="long" resultType="string">
+        SELECT
+            `name`
+        FROM
+            xy_category
+        WHERE
+            id IN (
+            SELECT
+                category_id
+            FROM
+                xy_article_category
+            WHERE
+                article_id = #{articleId})
+    </select>
+</mapper>

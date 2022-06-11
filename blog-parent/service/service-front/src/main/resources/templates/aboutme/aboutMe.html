@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta name="author" content="小袁同学,1971788445@qq.com,广州新华学院">
+  <meta name="Keywords" content="小袁博客,小袁Java学习站,小袁Java学习平台,文章,博客,小袁博客,article,blog">
+  <meta name="description" content="小袁博客,小袁Java学习站,小袁Java学习平台,文章,博客,小袁博客,article,blog,分享Java相关的知识和经验以及各大框架的项目开发提供Java学习的圈子">
+  <meta http-equiv="content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+  <link rel="shortcut icon" href="/static/img/favicon.ico">
+  <!-- 基础样式库 -->
+  <link rel="stylesheet" href="/static/css/bootstrap.css"/>
+  <link rel="stylesheet" href="/static/css/font-awesome.css"/>
+  <link rel="stylesheet" href="/static/css/animate.css"/>
+  <!-- hplus样式库 -->
+  <link rel="stylesheet" href="/static/css/hplus.css"/>
+  <!-- 公共样式 -->
+  <link rel="stylesheet" href="/static/css/customer/common.css"/>
+  <!-- 页脚样式 -->
+  <link rel="stylesheet" href="/static/css/customer/footer&cbl.css"/>
+  <!-- 导航栏样式 -->
+  <link rel="stylesheet" href="/static/css/customer/header.css"/>
+  <!-- 侧边信息样式 -->
+  <link rel="stylesheet" href="/static/css/sideBar/sidebar.css"/>
+  <script type="text/javascript" src="/static/js/jquery-1.11.3.js"></script>
+  <script type="text/javascript" src="/static/js/bootstrap.js"></script>
+  <!-- 模板 -->
+  <script type="text/javascript" src="/static/js/customer/template.js"></script>
+  <!-- 音乐播放器样式 -->
+  <link rel="stylesheet" href="/static/css/customer/player.min.css"/>
+  <!-- 音乐播放器JS -->
+  <script type="text/javascript" src="/static/js/customer/player.min.js"></script>
+  <!-- element ui -->
+  <link rel="stylesheet" href="/static/css/element-ui.css">
+  <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+  <script src="/static/js/vue.js"></script>
+  <script src="/static/js/element-ui.js"></script>
+  <script src="/static/js/httpVueLoader.js"></script>
+  <title>小袁博客</title>
+  <style>
+    #box1{
+      height: 90vh;
+      width: 100%;
+      background-image: url(/static/img/bg/xinhua_1.jpg);
+      background-size: 100% 100%;
+      display: table;
+      background-attachment: fixed;
+    }
+    #box2{
+      height: 100vh;
+      width: 100%;
+      background-image: url(/static/img/bg/xinhua_2.jpg);
+      background-size: 100% 100%;
+      display: table;
+      background-attachment: fixed;
+    }
+    #box3{
+      height: 100vh;
+      width: 100%;
+      background-image: url(/static/img/bg/xinhua_5.jpg);
+      background-size: 100% 100%;
+      display: table;
+      background-attachment: fixed;
+    }
+    #box4{
+      height: 100vh;
+      width: 100%;
+      background-image: url(/static/img/bg/xinhua_4.jpg);
+      background-size: 100% 100%;
+      display: table;
+      background-attachment: fixed;
+    }
+    #box1 h1,
+    #box2 h1,
+    #box3 h1,
+    #box4 h1{
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 50px;
+      color: white;
+      margin: 0;
+      text-align: center;
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .card {
+      position: absolute;
+      top: 50%;
+      left: 30%;
+      width: 300px;
+      height: 400px;
+      background: #fff;
+      transform-style: preserve-3d;
+      transform: translate(-50%, -50%) perspective(2000px);
+      box-shadow: inset 300px 0 50px rgba(0, 0, 0, 0.5), 0 20px 100px rgba(0, 0, 0, 0.5);
+      transition: 1s;
+    }
+
+    .card:hover {
+      transform: translate(-50%, -50%) perspective(2000px) rotate(-10deg);
+      box-shadow: inset 20px 0 50px rgba(0, 0, 0, 0.5), 0 10px 100px rgba(0, 0, 0, 0.5);
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      z-index: 10;
+      background: #475b02;
+      transform: skewX(-45deg);
+    }
+
+    .card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: -5px;
+      width: 5px;
+      height: 100%;
+      background-color: #7ea301;
+    }
+
+    .card .imgBox {
+      user-select: none;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-origin: left;
+      transition: 1s cubic-bezier(.15, 1.7, .84, .58);
+
+    }
+
+    .card:hover .imgBox {
+      transform: rotateY(-155deg);
+    }
+
+    .card .details {
+      position: absolute;
+      top: 0;
+      left: 0;
+      box-sizing: border-box;
+      padding: 20px;
+      z-index: -1;
+    }
+
+    .details h2 {
+      font-weight: bold;
+      color: #000000;
+      font-family: '黑体';
+    }
+
+    .details p {
+      margin-top: 20px;
+      font-weight: 500;
+      color: #000000;
+      font-family: '黑体';
+      font-size: 15px;
+    }
+  </style>
+</head>
+<body>
+<div id="main">
+  <!-- 导航栏 -->
+  <xy-navbar ref="xyNavbar" :user-info="userInfo"></xy-navbar>
+  <!-- 导航栏 -->
+
+  <!-- 中间内容 -->
+  <div class="no-margins no-padding">
+    <div id="box1">
+      <div class='card'>
+        <div class="imgBox">
+          <img src="https://cdn.pixabay.com/photo/2016/03/15/18/12/forest-1258845_1280.jpg">
+        </div>
+        <div class='details'>
+          <h2>《小袁同学》</h2>
+          <p>一名00后的大三学生，对Java有着较大的兴趣，同时对前端也有着一些兴趣，喜欢和伙伴们探讨技术，探讨问题</p>
+          <p>欢迎扫描最下方二维码加入QQ群一起探讨吧 92545977</p>
+          <div style="display: flex;justify-content: center;margin-top: 10px;">
+            <img class="opacity-9" style="width: 60%;height: 60%;" src="/static/img/qq_group.jpg" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="box2">
+      <h1>还没想好</h1>
+    </div>
+    <div id="box3">
+      <h1>还没想好</h1>
+    </div>
+    <div id="box4">
+      <h1>还没想好</h1>
+    </div>
+  </div>
+  <!-- 中间内容 -->
+
+  <!-- 页脚 -->
+  <div th:insert="common/common::footer"></div>
+  <!-- 页脚 -->
+
+  <!-- 右侧工具 -->
+  <div th:insert="common/common::right-toolbar"></div>
+  <!-- 右侧工具 -->
+</div>
+
+<!-- 音乐播放器 -->
+<div id="player"></div>
+<!-- 引入歌曲列表和配置信息 -->
+<script type="text/javascript" src="/static/js/customer/music.js"></script>
+<!-- hplus的JS -->
+<script type="javascript" src="/static/js/content.min.js"></script>
+<!-- Axios -->
+<script src="/static/js/axios.min.js"></script>
+<script type="module">
+  import userOperation from "../../static/js/common/navbar/userOperation.js";
+  import feedback from "../../static/js/common/dialog/feedback.js";
+
+  // 使用httpVueLoader
+  Vue.use(httpVueLoader);
+
+  var app = new Vue({
+    el: '#main',
+    components: {
+      'xy-navbar': 'url:/static/component/navbar/index.vue',
+      'xy-feedback': 'url:/static/component/dialog/feedback.vue'
+    },
+    data() {
+      return {
+        userInfo: {},
+      }
+    },
+    methods: {
+      // 打开问题反馈框
+      openProblemDialog() {},
+      // 打开提交建议框
+      openSuggestDialog() {},
+      // 提交问题反馈
+      submitProblemFeedback() {},
+      // 提交建议反馈
+      submitSuggestFeedback() {},
+      // 获取用户数据
+      getUserInfo() {},
+      // 退出登录
+      logout() {},
+      // 修改个人信息
+      submitEditPersonal() {},
+      // 找回密码
+      submitFindPassword() {},
+      // 修改密码
+      submitEditPassword() {},
+      // 发送验证码
+      sendEmailCode() {},
+      // 修改邮箱
+      submitEditEmail(){},
+      // 发送短信验证码
+      sendMobileCode(){},
+      // 提交修改号码
+      submitEditMobileNumber(){},
+    },
+    beforeMount() {
+    },
+    created() {
+      // 函数覆盖
+      this.openProblemDialog = feedback.openProblemDialog();
+      this.openSuggestDialog = feedback.openSuggestDialog();
+      this.submitProblemFeedback = feedback.submitProblemFeedback();
+      this.submitSuggestFeedback = feedback.submitSuggestFeedback();
+      // 顶部个人相关方法
+      this.getUserInfo = userOperation.getUserInfo();
+      this.getUserInfo();
+      this.logout = userOperation.logout();
+      this.submitEditPersonal = userOperation.submitEditPersonal();
+      this.submitFindPassword = userOperation.submitFindPassword();
+      this.submitEditPassword = userOperation.submitEditPassword();
+      this.sendEmailCode = userOperation.sendEmailCode();
+      this.submitEditEmail = userOperation.submitEditEmail();
+      this.sendSmsCode = userOperation.sendSmsCode();
+      this.submitEditMobileNumber = userOperation.submitEditMobileNumber();
+    }
+  })
+</script>
+</body>
+</html>

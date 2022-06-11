@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta name="author" content="小袁同学,1971788445@qq.com,广州新华学院">
+  <meta name="Keywords" content="小袁博客,小袁Java学习站,小袁Java学习平台,文章,博客,小袁博客,article,blog">
+  <meta name="description" content="小袁博客,小袁Java学习站,小袁Java学习平台,文章,博客,小袁博客,article,blog,分享Java相关的知识和经验以及各大框架的项目开发提供Java学习的圈子">
+  <meta http-equiv="content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+  <link rel="shortcut icon" href="/static/img/favicon.ico">
+  <title>登录</title>
+  <!-- 基础样式库 -->
+  <link rel="stylesheet" href="/static/css/bootstrap.css"/>
+  <link rel="stylesheet" href="/static/css/font-awesome.css"/>
+  <link rel="stylesheet" href="/static/css/animate.css"/>
+  <!-- 导航栏样式 -->
+  <link rel="stylesheet" href="/static/css/customer/header.css"/>
+  <!-- 本页样式 -->
+  <link rel="stylesheet" href="/static/css/customer/login.css">
+  <!-- element ui -->
+  <link rel="stylesheet" href="/static/css/element-ui.css">
+  <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+  <script src="/static/js/vue.js"></script>
+  <script src="/static/js/element-ui.js"></script>
+  <script src="/static/js/httpVueLoader.js"></script>
+</head>
+<body>
+<div id="main">
+  <!-- 导航栏 -->
+  <div th:insert="common/common::header"></div>
+  <!-- 导航栏 -->
+
+  <div class="info">
+    <div class="login">
+      <div class="form sign-in">
+        <h2>欢迎回来</h2>
+
+        <div class="user-form">
+          <el-form label-position="top" label-width="100px" :model="userLoginForm" :rules="rules" ref="userLoginForm">
+            <el-form-item prop="account">
+              <el-input prefix-icon="el-icon-user" placeholder="用户名/邮箱/手机号码" v-model="userLoginForm.account"
+                        class="input-with-select" maxlength="25" clearable>
+              </el-input>
+            </el-form-item>
+
+            <el-form-item prop="password">
+              <el-input prefix-icon="el-icon-lock"
+                        v-model="userLoginForm.password"
+                        placeholder="请填写密码"
+                        maxlength="20"
+                        @keyup.native.enter="submitForm('userLoginForm')"
+                        show-password clearable></el-input>
+            </el-form-item>
+          </el-form>
+        </div>
+
+        <p class="forgot-pass"><a href="javascript:">忘记密码？</a></p>
+        <button type="button" class="submit" @click="submitForm('userLoginForm')">登 录</button>
+        <button type="button" class="more">其他 <span>登录方式</span> 正在完整中</button>
+      </div>
+
+      <!-- 切换栏 -->
+      <div class="sub-cont">
+        <div class="img">
+          <div class="img__text m--up">
+            <h2>还未注册？</h2>
+            <p>立即注册，一起来学习Java吧</p>
+          </div>
+          <div class="img__text m--in">
+            <h2>已有帐号？</h2>
+            <p>有帐号就登录吧，好久不见了！</p>
+          </div>
+          <div class="img__btn" @click="loginStatus = !loginStatus">
+            <span class="m--up">注 册</span>
+            <span class="m--in">登 录</span>
+          </div>
+        </div>
+        <div class="form sign-up">
+          <h2>立即注册</h2>
+
+          <div class="user-form">
+            <el-form label-position="top" label-width="100px" :model="userRegisterForm" :rules="rules"
+                     ref="userRegisterForm">
+              <el-form-item prop="account">
+                <el-input placeholder="请填写账号" v-model="userRegisterForm.account" maxlength="25"
+                          class="input-with-select" :type="userRegisterForm.select == 3 ? 'number' : ''" clearable>
+                  <el-select v-model="userRegisterForm.select" slot="prepend" placeholder="登录方式">
+                    <el-option label="用户名" value="1"></el-option>
+                    <el-option label="邮箱" value="2"></el-option>
+                    <el-option label="手机号码" value="3"></el-option>
+                  </el-select>
+                </el-input>
+              </el-form-item>
+
+              <el-form-item prop="password">
+                <el-input prefix-icon="el-icon-lock" v-model="userRegisterForm.password"
+                          placeholder="请填写密码" maxlength="20" show-password clearable></el-input>
+              </el-form-item>
+
+              <el-form-item prop="passwordConfirm">
+                <el-input prefix-icon="el-icon-lock"
+                          v-model="userRegisterForm.passwordConfirm"
+                          placeholder="请确认密码"
+                          maxlength="20"
+                          @keyup.native.enter="submitForm('userRegisterForm')"
+                          show-password clearable></el-input>
+              </el-form-item>
+
+              <el-form-item v-if="userRegisterForm.select != 1" prop="code">
+                <el-input prefix-icon="el-icon-key"
+                          v-model="userRegisterForm.code"
+                          placeholder="请填写6位验证码"
+                          maxlength="6"
+                          @keyup.native.enter="submitForm('userRegisterForm')"
+                          type="number">
+                  <el-button slot="append" @click="sendCodeRequest()" :disabled="codeDisabled">{{ codeMsg }}</el-button>
+                </el-input>
+              </el-form-item>
+            </el-form>
+          </div>
+
+          <button type="button" class="submit" @click="submitForm('userRegisterForm')">注 册</button>
+          <button type="button" class="more">其他 <span>注册方式</span> 正在完善中</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- jquery -->
+<script type="text/javascript" src="/static/js/jquery-1.11.3.js"></script>
+<script src="/static/js/axios.min.js"></script>
+<script type="module">
+  import user from "../static/js/api/user.js";
+  import validator from "../static/js/utils/validator.js";
+  import commonService from "../static/js/api/commonService.js";
+
+  var app = new Vue({
+    el: '#main',
+    data() {
+      var valiAccount = (rule, value, callback) => {
+        if (!value) {
+          return callback(new Error('请填写账号'));
+        }
+        // 注册下, 验证
+        if (!this.loginStatus) {
+          if (/.*[\u4e00-\u9fa5]+.*$/.test(value)) {
+            return callback(new Error("不能填写文字"))
+          }
+          switch (this.userRegisterForm.select) {
+            case "1":
+              if (!/(?=.*[a-zA-Z])[a-zA-Z0-9]{5,20}/.test(value)) {
+                return callback(new Error("请输入 5-20 个字符，只能包含数字、大小写字母 且 至少包含一个字母"))
+              }
+              break;
+            case "2":
+              if (!/^([a-zA-Z0-9]+[-_\.]?)+@[a-zA-Z0-9]+\.[a-z]+$/.test(value)) {
+                return callback(new Error('请填写正确的邮箱'))
+              }
+              break;
+            case "3":
+              if (!/^[1][3,4,5,7,8][0-9]{9}$/.test(value)) {
+                return callback(new Error('请填写正确的手机号码'))
+              }
+              break;
+          }
+        }
+        callback();
+      };
+      var valiPassword = (rule, value, callback) => {
+        if (value === '') {
+          callback(new Error('请填写密码'));
+        }else if (value.length < 6 || value.length > 20) {
+          callback(new Error('密码长度在 6 - 20 个字符之间'))
+        }else {
+          if (this.userRegisterForm.passwordConfirm !== '') {
+            this.$refs.userRegisterForm.validateField('passwordConfirm');
+          }
+        }
+        callback();
+      };
+      var valiPasswordConfirm = (rule, value, callback) => {
+        if (value === '') {
+          callback(new Error('请填写确认密码'));
+        } else if (value !== this.userRegisterForm.password) {
+          callback(new Error('两次填写密码不一致!'));
+        } else {
+          callback();
+        }
+      };
+      var valiCode = (rule, value, callback) => {
+        if (value === '') {
+          callback(new Error('请填写6位验证码'));
+        }
+        callback()
+      };
+      return {
+        // 状态, true -> 登录, false -> 注册
+        loginStatus: true,
+        userLoginForm: {
+          account: '',
+          password: '',
+        },
+        userRegisterForm: {
+          account: '',
+          password: '',
+          passwordConfirm: '',
+          code: '',
+          select: '1'
+        },
+        codeMsg: '点击获取验证码',
+        codeCount: 60,
+        codeDisabled: false,
+        timer: 0,
+        // 校验规则
+        rules: {
+          account: [
+            {validator: valiAccount, trigger: 'blur'}
+          ],
+          password: [
+            {validator: valiPassword, trigger: 'blur'}
+          ],
+          passwordConfirm: [
+            {validator: valiPasswordConfirm, trigger: 'blur'}
+          ],
+          code: [
+            {validator: valiCode, trigger: 'blur'}
+          ]
+        },
+      }
+    },
+    methods: {
+      // 发送验证码
+      sendCodeRequest() {
+        if (this.userRegisterForm.select === '2') {
+          // 邮箱
+          if (validator.validateEmail(this.userRegisterForm.account)) {
+            // 发送权限校验码
+            commonService.getEmailCodePermission(this.userRegisterForm.account).then(_ => {
+              if (_) {
+                // 发送验证码
+                commonService.sendEmailCode(this.userRegisterForm.account).then(_ => {
+                  if (_) {
+                    // 通知邮箱发送
+                    this.$notify({
+                      title: '邮箱验证码已发送',
+                      message: '验证码有效时长5分钟, 失效请重新发送',
+                      type: 'success',
+                      duration: 10000
+                    })
+                  }
+                })
+              }
+            })
+          }else {
+            this.$message({
+              message: '请填写正确的邮箱',
+              type: 'error'
+            });
+            return;
+          }
+        }else if (this.userRegisterForm.select === '3'){
+          // 号码
+          if (validator.validatePhone(this.userRegisterForm.account)) {
+            // 获取权限码
+            commonService.getSmsCodePermission(this.userRegisterForm.account).then(_ => {
+              if (_) {
+                // 发送手机短信验证码
+                commonService.sendSmsCode(this.userRegisterForm.account).then(_ => {
+                  if (_) {
+                    // 通知邮箱发送
+                    this.$notify({
+                      title: '手机短信验证码已发送',
+                      message: '验证码有效时长10分钟, 失效请重新发送',
+                      type: 'success',
+                      duration: 10000
+                    })
+                  }
+                });
+              }
+            })
+          }else {
+            this.$message({
+              message: '请填写正确的号码',
+              type: 'error'
+            });
+            return;
+          }
+        }
+
+        // 按钮倒计时
+        this.codeDisabled = true;
+        this.codeMsg = this.codeCount-- + 's后重新获取';
+        this.timer = setInterval(() => {
+          this.codeMsg = this.codeCount-- + 's后重新获取';
+          if (this.codeCount < 0) {
+            this.codeMsg = '点击获取验证码';
+            this.codeCount = 60;
+            this.codeDisabled = false;
+            clearInterval(this.timer);
+          }
+        }, 1000);
+      },
+      // 提交表单
+      submitForm(formName) {
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            if (this.loginStatus) {
+              user.login(this.userLoginForm).then(res => {
+                if (res) {
+                  this.$message({
+                    message: '登陆成功',
+                    type: 'success'
+                  });
+                  window.location.href = '/home/home'
+                }
+              })
+            } else {
+              user.register(this.userRegisterForm).then(_ => {
+                if (_) {
+                  this.$refs[formName].resetFields();
+                  this.$message({
+                    message: '注册成功',
+                    type: 'success'
+                  });
+                  window.location.href = '/home/home'
+                }
+              })
+            }
+          }
+        });
+      },
+    }
+  })
+</script>
+<script>
+  // 登陆页面的切换
+  $(document).ready(function () {
+    $(".img__btn").mousedown(function () {
+      document.querySelector('.login').classList.toggle('s--signup')
+    });
+  });
+</script>
+</body>
+</html>

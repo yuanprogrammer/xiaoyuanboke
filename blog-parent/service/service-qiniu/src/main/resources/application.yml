@@ -1,0 +1,9 @@
+server:
+  port: 9006
+  servlet:
+    context-path: "/back/qiniu"
+
+qiniu:
+  accessKey: 七牛云Key
+  accessSecretKey: 七牛云密钥
+  articleImgBucket: 七牛云kodo空间名称

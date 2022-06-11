@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="element-ui-plugins" type="javaScript">
+    <properties>
+      <sourceFilesUrls>
+        <item url="file://$USER_HOME$/Downloads/element-plugins-master/element-ui-plugins" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$USER_HOME$/Downloads/element-plugins-master/element-ui-plugins" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
