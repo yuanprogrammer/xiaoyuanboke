@@ -43,7 +43,7 @@ public class CosServiceImpl implements CosService {
         String secretKey = ConstantPropertiesUtils.SECRET_KEY;
         COSCredentials cred = new BasicCOSCredentials(secretId, secretKey);
         // 存储桶
-        String bucketName = "xiaoyuan-1305930739";
+        String bucketName = 存储桶名称;
 
         // 按照日期分类存储
         String time = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
