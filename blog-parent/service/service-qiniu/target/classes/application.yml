@@ -1,9 +1,0 @@
-server:
-  port: 9006
-  servlet:
-    context-path: "/back/qiniu"
-
-qiniu:
-  accessKey: 'cOPlVEbc96YXZrK6mYryJkKVZcqqYATG2YDCiS4r'
-  accessSecretKey: '2SV8AsCAMlO6bsZ1Fb3eXpZEDT790JMxqfgV1af0'
-  articleImgBucket: xiaoyuanboke-article-img

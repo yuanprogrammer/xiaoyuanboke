@@ -1,5 +1,0 @@
-com\xiaoyuan\qiniu\QiniuApplication.class
-com\xiaoyuan\qiniu\service\impl\KodoServiceImpl.class
-com\xiaoyuan\qiniu\utils\ConstantPropertiesUtils.class
-com\xiaoyuan\qiniu\controller\KodoController.class
-com\xiaoyuan\qiniu\service\KodoService.class

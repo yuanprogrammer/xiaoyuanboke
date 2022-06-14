@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xiaoyuan.back.db.dao.ProblemFeedbackMapper">
-    <select id="getProblemFeedbackStateById" parameterType="long" resultType="string">
-        select state
-        from xy_problem_feedback
-        where id = #{id}
-    </select>
-</mapper>
