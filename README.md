@@ -25,6 +25,15 @@
 https://www.xiaoyuan-boke.com (前台) <br>
 https://www.xiaoyuan-boke.com/back-manager (后台管理)
 
+## 后端工程结构
+
+![image](https://user-images.githubusercontent.com/86464456/176442963-6f50511e-f119-4216-bf8a-d1d6ba90b3dc.png)
+
+## 后台管理Vue项目结构
+
+![image](https://user-images.githubusercontent.com/86464456/176443195-5f728111-1700-4be2-bab4-abb1c41ec4ff.png)
+
+
 ## 代码相关运行截图 （部分）
 ### 前台
 
