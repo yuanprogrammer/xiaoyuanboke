@@ -18,8 +18,17 @@
 ## 前言
 目前V1.0的版本，后续会慢慢更新项目的版本，完善功能，下一步应该是加后台的登录功能，加上权限验证，以及用户监控
 
+
+## 更新日志
+#### V2.0
+（1）更换了架构，采用微服务技术，引入eureka注册中心(下次换成nacos)，以及其他的openfeign/rabbitmq/websocket/quartz等技术<br>
+（2）模块重构，简洁清晰结构分明，实体类分离，第三方服务分离，利用openfeign跨模块调用，减少模块间的频繁注入<br>
+（3）后台系统增加了登录（可以微信登录），增加了权限/角色等功能，微信登录的用户默认注册为笔者账号(拥有文章相关权限)<br>
+（4）增加了定时发布/评论通知/收藏通知/点赞通知等功能，完善后台系统的全部页面缺少的操作（查询、删除、修改、增加）<br>
+
 ## 文档
-正在制作中。。。
+#### 启动文档地址：
+#### 开发文档地址：
 
 ## 项目体验地址：
 https://www.xiaoyuan-boke.com (前台) <br>
@@ -27,7 +36,13 @@ https://www.xiaoyuan-boke.com/back-manager (后台管理)
 
 ## 后端工程结构
 
-![image](https://user-images.githubusercontent.com/86464456/176442963-6f50511e-f119-4216-bf8a-d1d6ba90b3dc.png)
+![未命名文件](https://user-images.githubusercontent.com/86464456/201698374-badcbf7c-9625-48ff-9322-7672727e5c2e.png)
+
+### 后端开奥运地址：
+https://github.com/yuanprogrammer/xiaoyuanboke
+
+### 前端开源地址：
+https://github.com/yuanprogrammer/xiaoyuanboke-vue
 
 ## 后台管理Vue项目结构
 
