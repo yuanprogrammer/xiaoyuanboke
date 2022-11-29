@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoyuan.back.mapper.UserOperationMapper">
+
+    <select id="selectUserOperationList" parameterType="hashmap" resultType="com.xiaoyuan.model.vo.UserOperationVo">
+        SELECT
+            a.id,
+            b.nickname,
+            b.username,
+            COALESCE(b.email, '未激活') as email,
+            COALESCE(b.mobile_number, '未激活') as mobile_number,
+            b.avatar,
+            COALESCE(b.wechat_number, '未使用微信登录') as wechat_number,
+            a.`describe`,
+            a.gmt_create as operatedTime
+        FROM
+            `xy_user_operation` a, xy_common_user b
+        <where>
+            a.user_id = b.id
+            <if test="nickname != null and nickname != ''">
+                AND b.nickname like CONCAT('%', #{nickname}, '%')
+            </if>
+            <if test="username != null and username != ''">
+                AND b.username = #{username}
+            </if>
+            <if test="email != null and email != ''">
+                AND b.email = #{email}
+            </if>
+            <if test="mobileNumber != null and mobileNumber != ''">
+                AND b.mobileNumber = #{mobileNumber}
+            </if>
+            <if test="describe != null and describe != ''">
+                AND a.`describe` = #{describe}
+            </if>
+            <if test="operatedTime != null and operatedTime != ''">
+                AND DATE_FORMAT(a.gmt_create,'%Y-%m-%d') = #{operatedTime}
+            </if>
+        </where>
+        limit #{start}, #{size}
+    </select>
+
+    <select id="findTotal" parameterType="hashmap" resultType="int">
+        select count(*)
+        from `xy_user_operation` a, `xy_common_user` b
+        <where>
+            a.user_id = b.id
+            <if test="nickname != null and nickname != ''">
+                AND b.nickname like CONCAT('%', #{nickname}, '%')
+            </if>
+            <if test="username != null and username != ''">
+                AND b.username = #{username}
+            </if>
+            <if test="email != null and email != ''">
+                AND b.email = #{email}
+            </if>
+            <if test="mobileNumber != null and mobileNumber != ''">
+                AND b.mobileNumber = #{mobileNumber}
+            </if>
+            <if test="describe != null and describe != ''">
+                AND a.`describe` = #{describe}
+            </if>
+            <if test="operatedTime != null and operatedTime != ''">
+                AND DATE_FORMAT(a.gmt_create,'%Y-%m-%d') = #{operatedTime}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectOperationType" resultType="string">
+        SELECT
+            `describe`
+        FROM
+            `xy_user_operation`
+        GROUP BY `describe`
+    </select>
+</mapper>

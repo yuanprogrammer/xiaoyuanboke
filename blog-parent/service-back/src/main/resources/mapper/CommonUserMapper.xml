@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoyuan.back.mapper.CommonUserMapper">
+
+    <resultMap id="CommonUserVoMap" type="com.xiaoyuan.model.vo.CommonUserVo">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="nickname" property="nickname"/>
+        <result column="email" property="email"/>
+        <result column="mobile_number" property="mobileNumber"/>
+        <result column="wechat_number" property="wechatNumber"/>
+        <result column="avatar" property="avatar"/>
+        <result column="gmt_create" property="gmtCreate"/>
+        <result column="gmt_login" property="gmtLogin"/>
+    </resultMap>
+
+    <select id="listCommonUserPage"  resultMap="CommonUserVoMap">
+        SELECT
+            id,
+            username,
+            nickname,
+            COALESCE(email, '未激活') as email,
+            COALESCE(mobile_number, '未激活') as mobile_number,
+            COALESCE(wechat_number, '未使用微信登录') as wechat_number,
+            avatar,
+            gmt_create,
+            gmt_login
+        FROM
+            `xy_common_user`
+        <where>
+            1 = 1
+            <if test="param.id != null and param.id != ''">
+                AND id = #{param.id}
+            </if>
+            <if test="param.username != null and param.username != ''">
+                AND username = #{param.username}
+            </if>
+            <if test="param.nickname != null and param.nickname != ''">
+                AND nickname like CONCAT('%', #{param.nickname}, '%')
+            </if>
+            <if test="param.email != null and param.email != ''">
+                AND email = #{param.email}
+            </if>
+            <if test="param.mobileNumber != null and param.mobileNumber != ''">
+                AND mobile_number = #{param.mobileNumber}
+            </if>
+            <if test="param.gmtCreate != null and param.gmtCreate != ''">
+                AND DATE_FORMAT(gmt_create,'%Y-%m-%d') &gt;= #{param.gmtCreate}
+            </if>
+        </where>
+    </select>
+
+    <select id="findTotal" resultType="int">
+        select count(*)
+        from xy_common_user
+    </select>
+</mapper>
