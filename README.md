@@ -29,14 +29,17 @@
 #### 开发文档地址：
 
 ## 项目体验地址：
-https://www.xiaoyuan-boke.com (前台) <br>
-https://www.xiaoyuan-boke.com/back-manager (后台管理)
+// https://www.xiaoyuan-boke.com (前台) <br>
+// https://www.xiaoyuan-boke.com/back-manager (后台管理)
+域名重新备案中...
+http://180.76.158.195/ （前台）
+http://180.76.158.195/back-manager （后台）
 
 ## 后端工程结构
 
 ![未命名文件](https://user-images.githubusercontent.com/86464456/201698374-badcbf7c-9625-48ff-9322-7672727e5c2e.png)
 
-### 后端开奥运地址：
+### 后端开源地址：
 https://github.com/yuanprogrammer/xiaoyuanboke
 
 ### 前端开源地址：
