@@ -56,8 +56,8 @@ sa-token:
   is-log: false
 
 wx:
-  appId: wx109f0e8a014ffc2b
-  appSecret: f2f41da36d781d7c01f7f71f1a1c5770
+  appId: xxxx
+  appSecret: xxx
   callbackUrl: http://localhost:9004/back/api/system/wx_callback
   phoneBindingUrl: http://localhost:9528/#/phone
   loginUrl: http://localhost:9528/#/login
