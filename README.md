@@ -67,6 +67,10 @@ https://github.com/yuanprogrammer/xiaoyuanboke-vue
 
 ### 后台管理
 
+#### 实时聊天
+![bc110fd247f0b02bc8fe0f1ece9ea7e](https://user-images.githubusercontent.com/86464456/204419293-af442fe9-7636-494b-afc9-0a42591280ee.jpg)
+
+
 #### 文章列表
 ![image](https://user-images.githubusercontent.com/86464456/172377815-aa19c8ae-4d90-49f9-a852-975195f4a126.png)
 
