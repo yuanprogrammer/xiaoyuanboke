@@ -30,10 +30,10 @@
 
 ## 项目体验地址：
 // https://www.xiaoyuan-boke.com (前台) <br>
-// https://www.xiaoyuan-boke.com/back-manager (后台管理)
+// https://www.xiaoyuan-boke.com/back-manager (后台管理)<br>
 域名重新备案中...
-http://180.76.158.195/ （前台）
-http://180.76.158.195/back-manager （后台）
+http://180.76.158.195/ （前台）<br>
+http://180.76.158.195/back-manager （后台）<br>
 
 ## 后端工程结构
 
