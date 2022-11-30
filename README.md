@@ -25,8 +25,12 @@
 （5）增加了实时聊天功能，支持发送离线消息，用户上线即可接受消息
 
 ## 文档
-#### 启动文档地址：
-#### 开发文档地址：
+#### 启动文档地址：<br>
+https://note.youdao.com/s/TsljgEr3
+
+#### 开发文档地址：<br>
+https://note.youdao.com/s/ULByiIxQ
+
 
 ## 项目体验地址：
 // https://www.xiaoyuan-boke.com (前台) <br>
@@ -44,10 +48,6 @@ https://github.com/yuanprogrammer/xiaoyuanboke
 
 ### 前端开源地址：
 https://github.com/yuanprogrammer/xiaoyuanboke-vue
-
-## 后台管理Vue项目结构
-
-![image](https://user-images.githubusercontent.com/86464456/176443195-5f728111-1700-4be2-bab4-abb1c41ec4ff.png)
 
 
 ## 代码相关运行截图 （部分）
