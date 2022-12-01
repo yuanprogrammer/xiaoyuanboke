@@ -39,18 +39,14 @@ export default {
 
   /**
    * 查询分类文章列表
-   * @param pageParam
-   * @param categoryId
+   * @param param
    * @returns {*}
    */
-  findCategoryArticleList(pageParam, categoryId) {
+  findCategoryArticleList(param) {
     return request({
       url: '/article/category/list',
       method: 'post',
-      data: {
-        "pageParam": pageParam,
-        categoryId
-      }
+      data: param
     })
   },
 

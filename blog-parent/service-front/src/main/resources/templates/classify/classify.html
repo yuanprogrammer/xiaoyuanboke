@@ -235,11 +235,14 @@
       },
       // 查询分类文章列表
       findCategoryArticleList() {
-        article.findCategoryArticleList(this.pageParam, this.categoryId).then(res => {
+        let param = {
+          ...this.pageParam,
+          categoryId: this.categoryId
+        }
+        article.findCategoryArticleList(param).then(res => {
           if (res) {
-            let data = res.data.articleList;
-            this.articleList = data.list;
-            this.pageParam.totalCount = data.totalCount;
+            this.articleList = res.data.list;
+            this.pageParam.totalCount = res.data.total;
           }
         })
       },

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.xiaoyuan.front.vo.ArchivesVo;
 import com.xiaoyuan.model.entity.Article;
 import com.xiaoyuan.model.param.article.ArticleQueryParam;
+import com.xiaoyuan.model.param.article.CategoryQueryParam;
 import com.xiaoyuan.model.vo.PageUtils;
 import com.xiaoyuan.model.vo.R;
 import com.xiaoyuan.model.vo.article.RecommendArticleVo;
@@ -56,7 +57,7 @@ public interface ArticleService extends IService<Article> {
     /**
      * 查询某个分类文章列表
      */
-    R listCategoryArticleList(PageUtils pageUtils, Integer id);
+    R listCategoryArticleList(CategoryQueryParam categoryQueryParam);
 
     /**
      * 获取文章详细内容

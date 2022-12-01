@@ -18,6 +18,7 @@ import com.xiaoyuan.model.common.PageVo;
 import com.xiaoyuan.model.entity.Article;
 import com.xiaoyuan.model.enums.HttpStatusEnum;
 import com.xiaoyuan.model.param.article.ArticleQueryParam;
+import com.xiaoyuan.model.param.article.CategoryQueryParam;
 import com.xiaoyuan.model.vo.PageUtils;
 import com.xiaoyuan.model.vo.R;
 import com.xiaoyuan.model.vo.article.ArticleVo;
@@ -104,18 +105,13 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     }
 
     @Override
-    public R listCategoryArticleList(PageUtils pageUtils, Integer id) {
-        // 非空校验
-        if (id == null || id <= 0) return R.fail(HttpStatusEnum.PARAM_ERROR);
-
-        int index = pageUtils.getPageIndex();
-        int size = pageUtils.getPageSize();
-        if (index <= 0 || size <= 0) return R.fail(HttpStatusEnum.PARAM_ERROR);
-        if (size > 10) return R.fail(HttpStatusEnum.PARAM_LENGTH_BEYOND);
+    public R listCategoryArticleList(CategoryQueryParam categoryQueryParam) {
+        int index = categoryQueryParam.getPageIndex();
+        int size = categoryQueryParam.getPageSize();
 
         // 分页对象
         Page<Article> page = new Page<>(index, size);
-        IPage<Article> iPage = this.baseMapper.findCategoryArticleList(page, id);
+        IPage<Article> iPage = this.baseMapper.findCategoryArticleList(page, categoryQueryParam.getCategoryId());
         // 转换
         List<ArticleVo> articleVoList = new ArrayList<>();
         for (Article article : iPage.getRecords()) {
@@ -129,11 +125,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
             articleVoList.add(articleVo);
         }
 
-        pageUtils = new PageUtils(articleVoList, iPage.getTotal(), index, size);
-        Map<String, Object> map = new HashMap<>();
-        map.put("articleList", pageUtils);
-
-        return R.success(map);
+        return R.success(articleVoList);
     }
 
     @Autowired
