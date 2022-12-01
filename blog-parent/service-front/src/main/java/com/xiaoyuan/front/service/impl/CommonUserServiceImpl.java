@@ -213,6 +213,7 @@ public class CommonUserServiceImpl extends ServiceImpl<CommonUserMapper, CommonU
         // 赋值数据
         commonUser.setSalt(salt);
         commonUser.setPassword(password);
+        commonUser.setComUserCode("comUser::" + RandomUtil.randomStrUUID(true));
         // 插入数据库
         int result = this.baseMapper.insert(commonUser);
         if (result == 0) {
