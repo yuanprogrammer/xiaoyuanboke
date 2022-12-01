@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xiaoyuan.common_util.auth.EncryptionAlgorithmUtil;
 import com.xiaoyuan.common_util.auth.JWTUtil;
+import com.xiaoyuan.common_util.generate.RandomUtil;
 import com.xiaoyuan.common_util.match.StringMatch;
 import com.xiaoyuan.front.mapper.CommonUserMapper;
 import com.xiaoyuan.front.service.CommonUserService;
@@ -19,6 +20,9 @@ import com.xiaoyuan.model.constants.CookieConstant;
 import com.xiaoyuan.model.constants.RedisConstantKey;
 import com.xiaoyuan.model.entity.CommonUser;
 import com.xiaoyuan.model.enums.HttpStatusEnum;
+import com.xiaoyuan.model.param.comuser.FindPasswordParam;
+import com.xiaoyuan.model.param.comuser.ModifyPasswordParam;
+import com.xiaoyuan.model.param.comuser.RegisterParam;
 import com.xiaoyuan.model.vo.R;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -55,21 +59,8 @@ public class CommonUserServiceImpl extends ServiceImpl<CommonUserMapper, CommonU
 
     @Override
     public R login(LoginParam loginParam) {
-        if (loginParam == null) return R.fail(HttpStatusEnum.PARAM_ERROR);
-
         String account = loginParam.getAccount();
         String password = loginParam.getPassword();
-
-        // 参数非法校验
-        if (StringUtils.isBlank(account) || StringUtils.isBlank(password)) {
-            return R.fail(HttpStatusEnum.PARAM_ERROR);
-        }else if (StringMatch.isContainsEmoji(account) || StringMatch.isContainsChinese(account)) {
-            return R.fail(HttpStatusEnum.PARAM_ILLEGAL);
-        }else if (StringMatch.isContainsEmoji(password) || StringMatch.isContainsChinese(password)) {
-            return R.fail(HttpStatusEnum.PARAM_ILLEGAL);
-        }else if (account.length() > 25 || password.length() > 20) {
-            return R.fail(HttpStatusEnum.PARAM_LENGTH_BEYOND);
-        }
 
         // 获取加密盐
         String salt = this.baseMapper.getUserSalt(account);
@@ -107,29 +98,12 @@ public class CommonUserServiceImpl extends ServiceImpl<CommonUserMapper, CommonU
     }
 
     @Override
-    public R register(LoginParam loginParam) {
-        if (loginParam == null) return R.fail(HttpStatusEnum.PARAM_ERROR);
-        String account = loginParam.getAccount();
-        String password = loginParam.getPassword();
-        String passwordConfirm = loginParam.getPasswordConfirm();
-        String select = loginParam.getSelect();
-        String code = loginParam.getCode();
-
-        // 参数空校验
-        if (StringUtils.isAnyBlank(account, password, passwordConfirm, select)) {
-            return R.fail(HttpStatusEnum.PARAM_ERROR);
-        }
-
-        // 参数非法校验
-        if (StringMatch.isContainsEmoji(account) || StringMatch.isContainsChinese(account)) {
-            return R.fail(HttpStatusEnum.PARAM_ILLEGAL);
-        }else if (StringMatch.isContainsEmoji(password) || StringMatch.isContainsChinese(password)) {
-            return R.fail(HttpStatusEnum.PARAM_ILLEGAL);
-        }else if (StringMatch.isContainsEmoji(passwordConfirm) || StringMatch.isContainsEmoji(passwordConfirm)) {
-            return R.fail(HttpStatusEnum.PARAM_ILLEGAL);
-        }else if (password.length() < 6 || password.length() > 20) { // 长度校验
-            return R.fail(HttpStatusEnum.PARAM_ERROR);
-        }
+    public R register(RegisterParam registerParam) {
+        String account = registerParam.getAccount();
+        String password = registerParam.getPassword();
+        String passwordConfirm = registerParam.getPasswordConfirm();
+        String select = registerParam.getSelect();
+        String code = registerParam.getCode();
 
         // 二次密码校验
         if (!password.equals(passwordConfirm)) {
@@ -236,21 +210,11 @@ public class CommonUserServiceImpl extends ServiceImpl<CommonUserMapper, CommonU
     }
 
     @Override
-    public R modifyPassword(LoginParam loginParam) {
-        if (loginParam == null) return R.fail(HttpStatusEnum.PARAM_ERROR);
+    public R modifyPassword(ModifyPasswordParam modifyPasswordParam) {
 
         // 校验密码合法性
-        String password = loginParam.getPassword();
-        String passwordConfirm = loginParam.getPasswordConfirm();
-        if (StringUtils.isAnyBlank(password, passwordConfirm)) {
-            return R.fail(HttpStatusEnum.PARAM_ERROR);
-        }else if (StringMatch.isContainsEmoji(password) || StringMatch.isContainsEmoji(passwordConfirm)) {
-            return R.fail(HttpStatusEnum.PARAM_ILLEGAL); // 检测表情符号
-        }else if (StringMatch.isContainsChinese(password) || StringMatch.isContainsChinese(passwordConfirm)) {
-            return R.fail(HttpStatusEnum.PARAM_ILLEGAL); // 检测中文
-        }else if (password.length() < 6 || password.length() > 20 || passwordConfirm.length() < 6 || passwordConfirm.length() > 20) {
-            return R.fail(HttpStatusEnum.PARAM_ERROR);
-        }
+        String password = modifyPasswordParam.getPassword();
+        String passwordConfirm = modifyPasswordParam.getPasswordConfirm();
 
         // 获取被权限拦截的用户信息
         CommonUserVo commonUserVo = UserThreadLocal.get();
@@ -353,18 +317,11 @@ public class CommonUserServiceImpl extends ServiceImpl<CommonUserMapper, CommonU
     }
 
     @Override
-    public R findPassword(String token, LoginParam loginParam) {
-        if (loginParam == null) return R.fail(HttpStatusEnum.PARAM_ERROR);
+    public R findPassword(String token, FindPasswordParam findPasswordParam) {
 
-        String account = loginParam.getAccount();
-        String password = loginParam.getPassword();
-        String code = loginParam.getCode();
-
-        if (StringUtils.isAnyBlank(account, password, code, token) || code.length() != 6) {
-            return R.fail(HttpStatusEnum.PARAM_ERROR);
-        }else if (password.length() < 6 || password.length() > 20) {
-            return R.fail(HttpStatusEnum.PARAM_LENGTH_BEYOND);
-        }
+        String account = findPasswordParam.getAccount();
+        String password = findPasswordParam.getPassword();
+        String code = findPasswordParam.getCode();
 
         CommonUserVo commonUserVo = tokenService.checkToken(token);
         if (commonUserVo == null) return R.fail(HttpStatusEnum.USER_NO_LOGIN);
