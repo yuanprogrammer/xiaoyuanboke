@@ -1,6 +1,5 @@
-// const BASE_API = 'http://localhost:9003';
-const BASE_API = 'http://180.76.158.195:80';
-// const BASE_API = 'http://www.xiaoyuan-boke:443';
+// 请求地址
+const BASE_API = 'http://localhost:9003';
 // 创建axios实例
 const service = axios.create({
   baseURL: BASE_API, // api 的 base_url
