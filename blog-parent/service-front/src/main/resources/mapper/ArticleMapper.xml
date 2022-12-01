@@ -105,7 +105,7 @@
 
     <!-- 查询文章浏览总数 -->
     <select id="findViewCount" resultType="int">
-        select sum(view_count)
+        select COALESCE(sum(view_count), 0)
         from xy_article
         where deleted = 0
     </select>
