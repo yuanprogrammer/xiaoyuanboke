@@ -11,19 +11,19 @@ import javax.validation.constraints.NotNull;
 public class RegisterParam {
 
     @NotNull
-    @NotChinese
-    @NotEmoji
+    //@NotChinese
+    //@NotEmoji
     private String account;
 
     @NotNull
     @Length(min = 6, max = 20)
-    @NotChinese
-    @NotEmoji
+    //@NotChinese
+    //@NotEmoji
     private String password;
 
     @NotNull
-    @NotChinese
-    @NotEmoji
+    //@NotChinese
+    //@NotEmoji
     private String passwordConfirm;
 
     /**

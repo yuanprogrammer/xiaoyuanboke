@@ -11,14 +11,14 @@ import javax.validation.constraints.NotNull;
 public class ModifyPasswordParam {
 
     @NotNull
-    @NotEmoji
-    @NotChinese
+    //@NotEmoji
+    //@NotChinese
     @Length(min = 6, max = 20)
     private String password;
 
     @NotNull
-    @NotEmoji
-    @NotChinese
+    //@NotEmoji
+    //@NotChinese
     @Length(min = 6, max = 20)
     private String passwordConfirm;
 }
