@@ -22,7 +22,7 @@ public @interface NotEmoji {
     Class<? extends Payload>[] payload() default {};
 
     @Component
-    class isContainEmoji implements ConstraintValidator<NotChinese, String> {
+    class isContainEmoji implements ConstraintValidator<NotEmoji, String> {
 
         @Override
         public boolean isValid(String str, ConstraintValidatorContext constraintValidatorContext) {

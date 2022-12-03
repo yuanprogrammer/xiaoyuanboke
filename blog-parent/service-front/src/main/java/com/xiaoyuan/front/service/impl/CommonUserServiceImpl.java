@@ -15,7 +15,7 @@ import com.xiaoyuan.front.utils.StringThreadLocal;
 import com.xiaoyuan.front.utils.UserThreadLocal;
 import com.xiaoyuan.front.vo.CommonUserVo;
 import com.xiaoyuan.front.vo.param.CodeParam;
-import com.xiaoyuan.front.vo.param.LoginParam;
+import com.xiaoyuan.model.param.comuser.LoginParam;
 import com.xiaoyuan.model.constants.CookieConstant;
 import com.xiaoyuan.model.constants.RedisConstantKey;
 import com.xiaoyuan.model.entity.CommonUser;

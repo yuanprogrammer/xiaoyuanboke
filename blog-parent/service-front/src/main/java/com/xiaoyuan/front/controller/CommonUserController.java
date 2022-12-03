@@ -4,7 +4,7 @@ import com.xiaoyuan.front.annotation.CookieOperation;
 import com.xiaoyuan.front.service.CommonUserService;
 import com.xiaoyuan.front.vo.CommonUserVo;
 import com.xiaoyuan.front.vo.param.CodeParam;
-import com.xiaoyuan.front.vo.param.LoginParam;
+import com.xiaoyuan.model.param.comuser.LoginParam;
 import com.xiaoyuan.model.constants.CookieConstant;
 import com.xiaoyuan.model.param.comuser.FindPasswordParam;
 import com.xiaoyuan.model.param.comuser.ModifyPasswordParam;
