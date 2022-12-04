@@ -48,21 +48,4 @@ public final class StateCodeUtil {
 
         return baseCodeEnums;
     }
-
-    private static int count = 0;
-
-    public static void main(String[] args) throws InterruptedException {
-        for (int i = 1; i <= 100; i += 10) {
-            int s = i;
-            new Thread(() -> {
-                for (int j = s; j <= s + 9; j++) {
-                    count += j;
-                }
-            }).start();
-        }
-
-        Thread.sleep(1500);
-
-        System.out.println("结果" + count);
-    }
 }
