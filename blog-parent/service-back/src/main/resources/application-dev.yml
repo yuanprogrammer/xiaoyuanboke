@@ -11,8 +11,8 @@ spring:
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
       url: jdbc:mysql://localhost:3306/xiaoyuanboke?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
-      username: xiaoyuan
-      password: root
+      username: root
+      password: root123
       # 初始化大小，最小，最大
       initial-size: 5
       min-idle: 5
@@ -30,13 +30,6 @@ spring:
   redis:
     port: 6379
     host: localhost
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
-    notice-virtual-host: notice-host
-    virtual-host: /
 
 # Sa-Token配置
 sa-token:

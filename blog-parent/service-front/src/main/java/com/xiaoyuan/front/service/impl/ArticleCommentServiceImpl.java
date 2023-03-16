@@ -1,7 +1,5 @@
 package com.xiaoyuan.front.service.impl;
 
-import cn.hutool.core.date.DateUtil;
-import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -13,33 +11,25 @@ import com.xiaoyuan.front.mapper.CommonUserMapper;
 import com.xiaoyuan.front.service.ArticleCommentService;
 import com.xiaoyuan.front.service.TokenService;
 import com.xiaoyuan.front.utils.UserThreadLocal;
+import com.xiaoyuan.front.vo.CommonUserVo;
+import com.xiaoyuan.front.vo.param.ArticleCommentParam;
 import com.xiaoyuan.model.common.PageVo;
-import com.xiaoyuan.model.constants.MessageQueueConstants;
 import com.xiaoyuan.model.entity.ArticleComment;
 import com.xiaoyuan.model.entity.CommonUser;
 import com.xiaoyuan.model.enums.HttpStatusEnum;
 import com.xiaoyuan.model.feign.SysUserFeign;
 import com.xiaoyuan.model.param.article.ArticleLikeParam;
 import com.xiaoyuan.model.param.article.CommentDeleteParam;
-import com.xiaoyuan.model.vo.PageUtils;
 import com.xiaoyuan.model.vo.R;
 import com.xiaoyuan.model.vo.SysNoticeVo;
 import com.xiaoyuan.model.vo.article.ArticleCommentVo;
-import com.xiaoyuan.front.vo.CommonUserVo;
-import com.xiaoyuan.front.vo.param.ArticleCommentParam;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.amqp.core.Message;
-import org.springframework.amqp.core.MessageProperties;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.nio.charset.StandardCharsets;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * FileName:    ArticleCommentServiceImpl
@@ -57,16 +47,16 @@ public class ArticleCommentServiceImpl extends ServiceImpl<ArticleCommentMapper,
     @Autowired
     private CommonUserMapper commonUserMapper;
 
-    @Autowired
-    private RabbitTemplate noticeRabbit;
+//    @Autowired
+//    private RabbitTemplate noticeRabbit;
 
     @Autowired
     private SysUserFeign sysUserFeign;
 
-    @Bean
-    Jackson2JsonMessageConverter messageConverter() {
-        return new Jackson2JsonMessageConverter();
-    }
+//    @Bean
+//    Jackson2JsonMessageConverter messageConverter() {
+//        return new Jackson2JsonMessageConverter();
+//    }
 
     @Override
     public R insert(ArticleCommentParam articleCommentParam) {
@@ -104,7 +94,7 @@ public class ArticleCommentServiceImpl extends ServiceImpl<ArticleCommentMapper,
 //        MessageProperties messageProperties = new MessageProperties();
 //        messageProperties.setContentType("text/plain");
 //        Message message = new Message(JSONUtil.toJsonStr(sysNoticeVo).getBytes(), messageProperties);
-        noticeRabbit.convertAndSend(MessageQueueConstants.NOTICE_EXCHANGE, MessageQueueConstants.NOTICE_ROUTING, sysNoticeVo);
+//        noticeRabbit.convertAndSend(MessageQueueConstants.NOTICE_EXCHANGE, MessageQueueConstants.NOTICE_ROUTING, sysNoticeVo);
 
         return result == 0 ? R.fail(HttpStatusEnum.UNKNOWN_ERROR) : R.success();
     }
