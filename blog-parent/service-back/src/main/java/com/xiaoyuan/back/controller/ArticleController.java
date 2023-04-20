@@ -31,7 +31,7 @@ public class ArticleController {
     @Autowired
     private SchedulerService schedulerService;
 
-    @PostMapping("publish/")
+    @PostMapping("publish")
     @SaCheckPermission(value = {"ARTICLE:PUBLISH"}, mode = SaMode.OR)
     public R publishArticle(@RequestBody ArticleParam articleParam) {
         if (StrUtil.isEmpty(articleParam.getPublishTime())) {
