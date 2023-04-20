@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoyuan.front.mapper.CommonUserMapper">
+
+    <!-- 根据ID查询用户数据 -->
+    <select id="getUserInfoById" parameterType="long" resultType="com.xiaoyuan.model.entity.CommonUser">
+        select id, com_user_code, username, nickname, email, mobile_number, avatar
+        from xy_common_user
+        where id = #{id}
+        limit 1
+    </select>
+
+    <!-- 获取加密盐（通过用户名或者邮箱或者号码） -->
+    <select id="getUserSalt" parameterType="string" resultType="string">
+#         select count(*) = 0
+        select salt
+        from xy_common_user
+        <where>
+            username = #{account} or
+            email = #{acount} or
+            mobile_number = #{account}
+        </where>
+        limit 1
+    </select>
+
+    <select id="getUserSaltById" parameterType="long" resultType="string">
+        select salt
+        from xy_common_user
+        where id = #{id}
+        limit 1
+    </select>
+
+    <!-- 通过账号和密码查询用户数据 -->
+    <select id="isPasswordCorrect" resultType="com.xiaoyuan.model.entity.CommonUser">
+        select id
+        from xy_common_user
+        where ( username = #{account} or email = #{account} or mobile_number = #{account} )
+            and password = #{password}
+        limit 1
+    </select>
+
+    <!-- 验证邮箱是否已经被注册 -->
+    <select id="isContainsEmail" parameterType="string" resultType="boolean">
+        select count(salt) = 1
+        from xy_common_user
+        where email = #{email}
+        limit 1
+    </select>
+
+    <!-- 验证号码是否已经被注册 -->
+    <select id="isContainsMobileNumber" parameterType="string" resultType="boolean">
+        select count(salt) = 1
+        from xy_common_user
+        where mobile_number = #{mobileNumber}
+        limit 1
+    </select>
+</mapper>

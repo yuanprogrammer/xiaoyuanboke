@@ -1,0 +1,5 @@
+eureka:
+  client:
+    service-url:
+      # 服务中心
+      defaultZone: http://localhost:9000/eureka/

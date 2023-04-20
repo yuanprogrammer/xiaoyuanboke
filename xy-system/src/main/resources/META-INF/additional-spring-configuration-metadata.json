@@ -1,0 +1,40 @@
+{
+  "properties": [
+    {
+      "name": "miscrocloud.system.global-log.disable",
+      "type": "java.lang.Boolean",
+      "defaultValue": true,
+      "description": "是否开启全局日志."
+    },
+    {
+      "name": "miscrocloud.system.global-log.time-cost-detect-disable",
+      "type": "java.lang.Boolean",
+      "defaultValue": true,
+      "description": "是否开启接口耗时检测."
+    },
+    {
+      "name": "miscrocloud.system.global-log.service-response-disable",
+      "type": "java.lang.Boolean",
+      "defaultValue": false,
+      "description": "是否开启业务返回结果错误日志."
+    },
+    {
+      "name": "miscrocloud.system.global-log.service-response-status-name",
+      "type": "java.lang.String",
+      "defaultValue": "code",
+      "description": "返回结果状态码属性名."
+    },
+    {
+      "name": "miscrocloud.system.global-log.service-response-status-value",
+      "type": "java.lang.Integer",
+      "defaultValue": 200,
+      "description": "返回结果正确状态码."
+    },
+    {
+      "name": "miscrocloud.system.global-log.time-cost-detect",
+      "type": "java.lang.Long",
+      "defaultValue": 3000,
+      "description": "接口耗时检测（ms）."
+    }
+  ]
+}

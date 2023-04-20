@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoyuan.back.mapper.SysRoleMapper">
+    <resultMap id="roleVoMap" type="com.xiaoyuan.model.vo.SysRoleVo">
+        <id column="id" property="id"/>
+        <result column="role_key" property="roleKey"/>
+        <result column="role_name" property="roleName"/>
+        <result column="permissions" property="permissions"/>
+        <result column="describe" property="describe"/>
+    </resultMap>
+
+    <!-- 角色列表 -->
+    <select id="listRolePage" resultMap="roleVoMap">
+        select id, role_key, role_name, `describe`
+        from sys_role
+        <where>
+            1 = 1
+            <if test="param.roleName != null and param.roleName != ''">
+                role_name like concat(#{param.roleName}, '%')
+            </if>
+        </where>
+    </select>
+
+    <update id="updatePermissions" parameterType="com.xiaoyuan.model.param.role.PermissionRoleParam">
+        update sys_role
+        set permissions = JSON_ARRAY
+        <choose>
+            <when test="permissions != null and permissions.size != 0">
+                <foreach collection="permissions" item="item" open="(" close=")" separator=",">
+                    ${item}
+                </foreach>
+            </when>
+            <otherwise>
+                ()
+            </otherwise>
+        </choose>
+        where role_key = #{roleKey}
+    </update>
+
+    <insert id="insertRole" parameterType="com.xiaoyuan.model.entity.SysRole">
+        insert into sys_role(role_key, role_name, `describe`, permissions) value(
+            #{roleKey}, #{roleName}, #{describe}, JSON_ARRAY
+            <foreach collection="permissions" item="item" open="(" close=")" separator=",">
+                ${item}
+            </foreach>
+        )
+    </insert>
+</mapper>

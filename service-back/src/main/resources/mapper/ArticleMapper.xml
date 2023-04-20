@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoyuan.back.mapper.ArticleMapper">
+
+    <resultMap id="ArticleVoMap" type="com.xiaoyuan.model.vo.article.ArticleVo">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="cover" property="cover"/>
+        <result column="digest" property="digest"/>
+        <result column="tags" property="tags"/>
+        <result column="authorId" property="authorId"/>
+        <result column="authorName" property="authorName"/>
+        <result column="authorAvatar" property="authorAvatar"/>
+        <result column="view_count" property="viewCount"/>
+        <result column="comment_count" property="commentCount"/>
+        <result column="good_count" property="goodCount"/>
+        <result column="collect_count" property="collectCount"/>
+        <result column="gmt_create" property="publishTime"/>
+        <result column="gmt_update" property="editTime"/>
+    </resultMap>
+
+    <select id="listArticlePage" resultMap="ArticleVoMap">
+        SELECT
+        -- 文章表数据
+        art.id,
+        art.title,
+--         art.cover,
+--         art.digest,
+        art.tags,
+        art.gmt_create,
+        -- 	用户信息
+        u.id as authorId,
+        u.nickname as authorName,
+        u.avatar as authorAvatar,
+        -- 	浏览量
+        art.view_count,
+        -- 文章评论表数据
+        COALESCE(com.count, 0) as comment_count,
+        -- 	点赞数量
+        COALESCE(lik.count, 0) as good_count,
+        -- 	收藏数量
+        COALESCE(col.count, 0) as collect_count
+                FROM
+                    xy_article art
+        -- 	左拼接查询用户信息
+                        LEFT JOIN xy_common_user u ON u.id = art.author_id
+        -- 	左拼接查询评论数量
+                        LEFT JOIN (SELECT article_id, count(id) AS count FROM xy_article_comment GROUP BY article_id) com ON com.article_id = art.id
+        -- 左拼接查询点赞数量
+                        LEFT JOIN (SELECT article_id, count(id) AS count FROM xy_article_like GROUP BY article_id) lik ON lik.article_id = art.id
+        -- 左拼接查询收藏数量
+                        LEFT JOIN (SELECT article_id, count(id) AS count from xy_article_collect GROUP BY article_id) col ON col.article_id = art.id
+        <where>
+            art.deleted = '0'
+            <if test="param.id != null and param.id != ''">
+                AND art.id = #{param.id}
+            </if>
+            <if test="param.tag != null and param.tag != ''">
+                AND art.tags like concat(#{param.tag}, '%')
+            </if>
+            <if test="param.title != null and param.title != ''">
+                AND art.title like concat(#{param.title}, '%')
+            </if>
+            <if test="param.startTime != null and param.startTime != ''">
+                AND art.gmt_create &gt;= #{param.startTime}
+            </if>
+            <if test="param.endTime != null and param.endTime != ''">
+                AND art.gmt_create &lt;= #{param.endTime}
+            </if>
+            <if test="param.isAdmin != 'true'">
+                AND art.author_id = #{param.isAdmin}
+            </if>
+        </where>
+        <choose>
+            <when test="param.sort != null and param.sort != ''">
+                ORDER BY ${param.sort} DESC
+            </when>
+            <otherwise>
+                ORDER BY gmt_create DESC
+            </otherwise>
+        </choose>
+    </select>
+</mapper>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta name="author" content="小袁同学,1971788445@qq.com,广州新华学院">
+  <meta name="Keywords" content="小袁博客,小袁Java学习站,小袁Java学习平台,文章,博客,小袁博客,article,blog">
+  <meta name="description" content="小袁博客,小袁Java学习站,小袁Java学习平台,文章,博客,小袁博客,article,blog,分享Java相关的知识和经验以及各大框架的项目开发提供Java学习的圈子">
+  <meta http-equiv="content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+  <link rel="shortcut icon" href="/static/img/favicon.ico">
+  <!-- 基础样式库 -->
+  <link rel="stylesheet" href="/static/css/bootstrap.css"/>
+  <link rel="stylesheet" href="/static/css/font-awesome.css"/>
+  <link rel="stylesheet" href="/static/css/animate.css"/>
+  <!-- hplus样式库 -->
+  <link rel="stylesheet" href="/static/css/hplus.css"/>
+  <!-- 公共样式 -->
+  <link rel="stylesheet" href="/static/css/customer/common.css"/>
+  <!-- 自定义图标库 -->
+  <link rel="stylesheet" type="text/css" href="/static/css/xy-iconfont.css"/>
+  <!-- 页脚样式 -->
+  <link rel="stylesheet" href="/static/css/customer/footer&cbl.css"/>
+  <!-- 导航栏样式 -->
+  <link rel="stylesheet" href="/static/css/customer/header.css"/>
+  <!-- 侧边信息样式 -->
+  <link rel="stylesheet" href="/static/css/sideBar/sidebar.css"/>
+  <script type="text/javascript" src="/static/js/jquery-1.11.3.js"></script>
+  <script type="text/javascript" src="/static/js/bootstrap.js"></script>
+  <!-- 模板 -->
+  <script type="text/javascript" src="/static/js/customer/template.js"></script>
+  <!-- 音乐播放器样式 -->
+  <link rel="stylesheet" href="/static/css/customer/player.min.css"/>
+  <!-- 音乐播放器JS -->
+  <script type="text/javascript" src="/static/js/customer/player.min.js"></script>
+  <!-- 本页样式 -->
+  <link rel="stylesheet" href="/static/css/customer/message.css">
+  <!-- element ui -->
+  <link rel="stylesheet" href="/static/css/element-ui.css">
+  <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+  <script src="/static/js/vue.js"></script>
+  <script src="/static/js/element-ui.js"></script>
+  <script src="/static/js/httpVueLoader.js"></script>
+  <title>小袁博客</title>
+  <style>
+    /* 分页样式 */
+    .el-pagination__jump {
+      color: #ff9ff3;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+<div id="main" v-cloak>
+  <!-- 导航栏 -->
+  <xy-navbar ref="xyNavbar" :user-info="userInfo"></xy-navbar>
+  <!-- 导航栏 -->
+
+  <!-- 中间内容 -->
+  <div class="gray-bg top-navigation">
+    <div id="wrapper" class="message_bg">
+      <div id="page-wrapper">
+        <div class="wrapper wrapper-content">
+          <div class="container-fluid">
+            <div class="col">
+              <div class="col-lg-8 col-md-8 col-xs-12">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <div class="col-md-8 no-padding">
+                    <button @click="openMessageDialog()" style="margin-top: 10px;" class="btn btn-primary"><i
+                      class="xy-icon xyicon-foot"></i> 点 击 此 处 留 下 个 人 足 迹 ~
+                    </button>
+                  </div>
+                  <div class="col-md-4 no-padding">
+                    <div class="alert alert-success no-margins">
+                      <span class="text-spacing-xxs">把鼠标放到留言上会有意想不到的效果哦~</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-3" v-for="item in messageList">
+                  <div class="flip-card-container">
+                    <div class="flip-card">
+                      <div class="message-front">
+                        <div class="message-nail">
+                          <i class="fa fa-circle-o"></i>
+                        </div>
+                        <div class="message-box">
+                          <span>{{ item.content }}</span>
+                        </div>
+                        <div class="m-t-xs">
+                          <div class="m-t-xs">
+                            <span class="text-success">{{ splitDate(item.gmtCreate) }}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="message-back">
+                        <figure>
+                          <img :src="item.background">
+                        </figure>
+                        <button v-if="item.detailContent" @click="browseMoreContent(item.detailContent)">more</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 分页 -->
+                <div class="col-md-12 no-padding" style="text-align:center;margin-top:5px;">
+                  <el-pagination background
+                                 @current-change="handleCurrentChange"
+                                 :hide-on-single-page="true"
+                                 :current-page.sync="pageParam.pageIndex"
+                                 :page-size="pageParam.pageSize"
+                                 :total="pageParam.totalCount"
+                                 layout="prev, pager, next, jumper">
+                  </el-pagination>
+                </div>
+
+              </div>
+            </div>
+            <div class="col">
+              <div class="col-lg-4 col-md-4 hidden-xs hidden-sm">
+                <!-- 个人资料 -->
+                <div class="col-md-12 m-b-md" th:insert="common/commonSidebar::side-personal"></div>
+                <!-- 个人资料 -->
+
+                <!-- 搜索 -->
+                <div class="col-md-12 m-b-sm padding-l-r-60 opacity-8" th:insert="common/commonSidebar::side-search">
+
+                </div>
+                <!-- 搜索 -->
+
+                <!-- 热门文章 -->
+                <div class="col-md-12 side-hot padding-l-r-60 opacity-8"
+                     th:insert="common/commonSidebar::side-hot"></div>
+                <!-- 热门文章 -->
+
+                <!-- 文章档案 -->
+                <div class="col-md-12 side-archive padding-l-r-60 opacity-8"
+                     th:insert="common/commonSidebar::side-archive"></div>
+                <!-- 文章档案 -->
+
+                <!-- 最新文章 -->
+                <div class="col-md-12 side-new padding-l-r-60 opacity-8"
+                     th:insert="common/commonSidebar::side-new"></div>
+                <!-- 最新文章 -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 留言 -->
+  <el-dialog title="留下足迹"  :visible.sync="messageDialogVisible" width="40%">
+    <el-form label-position="top" label-width="80">
+      <!-- 留言内容 简述 -->
+      <el-form-item label="留言内容（正面显示）" >
+        <el-input
+          type="textarea"
+          rows="4"
+          maxlength="30"
+          resize="none"
+          show-word-limit
+          placeholder="请填写您的留言~"
+          v-model="homeMessageParam.content"></el-input>
+      </el-form-item>
+    </el-form>
+
+    <el-form label-position="right" label-width="80">
+      <el-form-item label="是否有更多的留言内容呢">
+        <!-- 选项开关 -->
+        <el-switch
+          v-model="isMore"
+          active-color="#13ce66"
+          inactive-color="#ff4949">
+        </el-switch>
+      </el-form-item>
+      <!-- 更多留言 -->
+      <el-form-item v-if="isMore">
+        <el-input
+          type="textarea"
+          rows="3"
+          maxlength="120"
+          minlength="30"
+          show-word-limit
+          placeholder="此留言会在背面点击后才显示哦 ~ 不得少于30字"
+          v-model="homeMessageParam.detailContent"></el-input>
+      </el-form-item>
+    </el-form>
+
+    <div slot="footer" class="dialog-footer">
+      <el-button type="warning" icon="el-icon-circle-close" @click="clearMessageDialog()">清 空</el-button>
+      <el-button type="danger" icon="el-icon-chat-line-round" @click="submitMessage()"> 踩 下 脚 印</el-button>
+    </div>
+  </el-dialog>
+
+  <!-- 查看更多内容 -->
+  <el-dialog
+    title="更多内容"
+    :show-close="false"
+    :visible.sync="moreContentDialogVisible"
+    width="30%">
+    <span>{{ moreContent }}</span>
+  </el-dialog>
+
+  <!-- 提交建议和问题反馈 -->
+  <xy-feedback ref="xyFeedback"></xy-feedback>
+
+  <!-- 页脚 -->
+  <div th:insert="common/common::footer"></div>
+  <!-- 页脚 -->
+
+  <!-- 右侧工具 -->
+  <div th:insert="common/common::right-toolbar"></div>
+  <!-- 右侧工具 -->
+</div>
+
+<!-- 音乐播放器 -->
+<div id="player"></div>
+<!-- 引入歌曲列表和配置信息 -->
+<script type="text/javascript" src="/static/js/customer/music.js"></script>
+<!-- hplus的JS -->
+<script type="javascript" src="/static/js/content.min.js"></script>
+<script src="/static/js/axios.min.js"></script>
+<script type="module">
+  import message from "../../static/js/api/message.js";
+  import userOperation from "../../static/js/common/navbar/userOperation.js";
+  import feedback from "../../static/js/common/dialog/feedback.js";
+
+  // 使用httpVueLoader
+  Vue.use(httpVueLoader);
+
+  var app = new Vue({
+    el: '#main',
+    components: {
+      'xy-navbar': 'url:/static/component/navbar/index.vue',
+      'xy-feedback': 'url:/static/component/dialog/feedback.vue'
+    },
+    data() {
+      return {
+        userInfo: {},
+        // 分页
+        pageParam: {
+          pageSize: 32, // 每页大小
+          pageIndex: 1, // 当前页数
+          totalCount: 0, // 总记录数
+        },
+        messageList: [],
+        // 留言
+        messageDialogVisible: false,
+        isMore: false,
+        homeMessageParam: {
+          content: '',
+          detailContent: ''
+        },
+        moreContentDialogVisible: false,
+        moreContent: ''
+      }
+    },
+    methods: {
+      // 打开问题反馈框
+      openProblemDialog() {},
+      // 打开提交建议框
+      openSuggestDialog() {},
+      // 提交问题反馈
+      submitProblemFeedback() {},
+      // 提交建议反馈
+      submitSuggestFeedback() {},
+      // 获取用户数据
+      getUserInfo() {},
+      // 退出登录
+      logout() {},
+      // 修改个人信息
+      submitEditPersonal() {},
+      // 找回密码
+      submitFindPassword() {},
+      // 修改密码
+      submitEditPassword() {},
+      // 发送验证码
+      sendEmailCode() {},
+      // 修改邮箱
+      submitEditEmail(){},
+      // 发送短信验证码
+      sendMobileCode(){},
+      // 提交修改号码
+      submitEditMobileNumber(){},
+      // 切页
+      handleCurrentChange(index) {
+        this.pageParam.pageIndex = index;
+        this.findMessageList()
+      },
+      // 查询留言列表
+      findMessageList() {
+        message.findMessageList(this.pageParam).then( res => {
+          let date = res.data.messageList;
+
+          this.pageParam.totalCount = date.totalCount;
+          this.messageList = date.list
+        })
+      },
+      // 日期切割 2022-04-27 -> 2022年04月27日
+      splitDate(date) {
+        var arr = date.split('-');
+        return arr[0] + '年' + arr[1] + '月' + arr[2] + '日'
+      },
+      // 查看更多
+      browseMoreContent(content){
+        this.moreContent = content;
+        this.moreContentDialogVisible = true
+      },
+      // 打开留言提交框
+      openMessageDialog() {
+        this.messageDialogVisible = true
+      },
+      // 清空留言提交框
+      clearMessageDialog() {
+        this.homeMessageParam.content = '';
+        this.homeMessageParam.detailContent = ''
+      },
+      // 提交留言
+      submitMessage() {
+        // 判断留言是否为空
+        if (this.homeMessageParam.content === '') {
+          this.$message({
+            message: '请填写留言内容',
+            type: 'warning'
+          });
+          return
+        }
+
+        if (this.isMore && this.homeMessageParam.detailContent.length < 30) {
+          this.$message({
+            message: '更多留言内容不得少于30字',
+            type: 'warning'
+          });
+          return
+        }
+
+        // 是否有更多内容
+        if (!this.isMore) {
+          this.homeMessageParam.detailContent = ''
+        }
+
+        // 提交
+        message.addMessage(this.homeMessageParam).then( res => {
+          if (res) {
+            // 通知
+            this.$notify({
+              title: '留言成功',
+              type: 'success'
+            });
+
+            // 关闭留言框
+            this.messageDialogVisible = false;
+            // 清空内容
+            this.clearMessageDialog();
+
+            // 刷新留言区
+            this.findMessageList()
+          }
+        })
+      }
+    },
+    beforeMount() {
+      this.findMessageList();
+    },
+    created() {
+      // 函数覆盖
+      this.openProblemDialog = feedback.openProblemDialog();
+      this.openSuggestDialog = feedback.openSuggestDialog();
+      this.submitProblemFeedback = feedback.submitProblemFeedback();
+      this.submitSuggestFeedback = feedback.submitSuggestFeedback();
+      // 顶部个人相关方法
+      this.getUserInfo = userOperation.getUserInfo();
+      this.getUserInfo();
+      this.logout = userOperation.logout();
+      this.submitEditPersonal = userOperation.submitEditPersonal();
+      this.submitFindPassword = userOperation.submitFindPassword();
+      this.submitEditPassword = userOperation.submitEditPassword();
+      this.sendEmailCode = userOperation.sendEmailCode();
+      this.submitEditEmail = userOperation.submitEditEmail();
+      this.sendSmsCode = userOperation.sendSmsCode();
+      this.submitEditMobileNumber = userOperation.submitEditMobileNumber();
+    }
+  })
+</script>
+</body>
+</html>

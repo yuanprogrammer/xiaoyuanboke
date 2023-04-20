@@ -1,0 +1,26 @@
+server:
+  port: 9004
+  servlet:
+    context-path: "/back/api"
+spring:
+  profiles:
+    active: dev
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  application:
+#    name: back-server
+    name: backServer
+
+##########################  mybatis   ##########################
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+  #  configuration:
+    # 打印SQL语句
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-aliases-package: com.xiaoyuan.model.entity
+logging:
+  level:
+    com.shyroke.mapper: debug

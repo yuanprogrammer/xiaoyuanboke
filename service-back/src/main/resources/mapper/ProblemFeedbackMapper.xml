@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoyuan.back.mapper.ProblemFeedbackMapper">
+
+    <resultMap id="problemVoMap" type="com.xiaoyuan.model.vo.ProblemFeedbackVo">
+        <id column="id" property="id"/>
+        <result column="email" property="email"/>
+        <result column="problem" property="problem"/>
+        <result column="problem_state" property="problemState"/>
+        <result column="notice_state" property="noticeState"/>
+        <result column="gmt_create" property="createTime"/>
+    </resultMap>
+
+    <sql id="selectSQL">
+        select e.id, e.email, e.problem, e.problem_state, e.notice_state, e.gmt_create
+        from xy_problem_feedback e
+    </sql>
+
+    <select id="getProblemFeedbackStateById" parameterType="long" resultType="string">
+        select state
+        from xy_problem_feedback
+        where id = #{id}
+    </select>
+
+    <select id="listProblemFeedbackPage" resultMap="problemVoMap">
+        <include refid="selectSQL"/>
+        <where>
+            1 = 1
+            <if test="param.id != null and param.id != ''">
+                AND e.id = #{param.id}
+            </if>
+            <if test="param.email != null and param.email != ''">
+                AND e.email = #{param.id}
+            </if>
+            <if test="param.problemState != null and param.problemState >= 0">
+                AND e.problem_state = cast(${param.problemState} as char)
+            </if>
+            <if test="param.noticeState != null and param.noticeState >= 0">
+                AND e.notice_state = cast(${param.noticeState} as char)
+            </if>
+            <if test="param.startTime != null and param.startTime != ''">
+                AND e.gmt_create &gt;= #{param.startTime}
+            </if>
+            <if test="param.endTime != null and param.endTime != ''">
+                AND e.gmt_create &lt;= #{param.endTime}
+            </if>
+        </where>
+    </select>
+</mapper>

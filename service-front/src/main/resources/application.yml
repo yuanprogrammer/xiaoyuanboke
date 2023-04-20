@@ -1,0 +1,10 @@
+server:
+  port: 9003
+spring:
+  profiles:
+    active: dev
+  application:
+#    name: front-server
+    name: frontServer
+  mvc:
+    static-path-pattern: /static/**
