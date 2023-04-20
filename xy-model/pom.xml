@@ -23,12 +23,6 @@
             <artifactId>xy-common-util</artifactId>
             <version>1.0</version>
         </dependency>
-        <!-- OpenFeign服务调用 -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-            <scope>compile</scope>
-        </dependency>
         <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>

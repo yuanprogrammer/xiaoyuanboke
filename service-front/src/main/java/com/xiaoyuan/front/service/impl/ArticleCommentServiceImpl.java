@@ -17,11 +17,9 @@ import com.xiaoyuan.model.common.PageVo;
 import com.xiaoyuan.model.entity.ArticleComment;
 import com.xiaoyuan.model.entity.CommonUser;
 import com.xiaoyuan.model.enums.HttpStatusEnum;
-import com.xiaoyuan.model.feign.SysUserFeign;
 import com.xiaoyuan.model.param.article.ArticleLikeParam;
 import com.xiaoyuan.model.param.article.CommentDeleteParam;
 import com.xiaoyuan.model.vo.R;
-import com.xiaoyuan.model.vo.SysNoticeVo;
 import com.xiaoyuan.model.vo.article.ArticleCommentVo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,8 +48,8 @@ public class ArticleCommentServiceImpl extends ServiceImpl<ArticleCommentMapper,
 //    @Autowired
 //    private RabbitTemplate noticeRabbit;
 
-    @Autowired
-    private SysUserFeign sysUserFeign;
+//    @Autowired
+//    private SysUserFeign sysUserFeign;
 
 //    @Bean
 //    Jackson2JsonMessageConverter messageConverter() {
@@ -83,13 +81,13 @@ public class ArticleCommentServiceImpl extends ServiceImpl<ArticleCommentMapper,
         int result = this.baseMapper.insert(articleComment);
 
         // 发送通知给后台作者
-        String sysUserCoded = sysUserFeign.searchUserCodeByArticleId(EncryptionAlgorithmUtil.decode(articleCommentParam.getArticleNumber())).getData();
-        SysNoticeVo sysNoticeVo = new SysNoticeVo();
-        sysNoticeVo.setSenderCode(commonUserVo.getComUserCode());
-        sysNoticeVo.setReceiverCode(sysUserCoded);
-        sysNoticeVo.setTitle("评论了该文章");
-        sysNoticeVo.setContent(articleCommentParam.getTitle());
-        sysNoticeVo.setMsgType(1);
+//        String sysUserCoded = sysUserFeign.searchUserCodeByArticleId(EncryptionAlgorithmUtil.decode(articleCommentParam.getArticleNumber())).getData();
+//        SysNoticeVo sysNoticeVo = new SysNoticeVo();
+//        sysNoticeVo.setSenderCode(commonUserVo.getComUserCode());
+//        sysNoticeVo.setReceiverCode(sysUserCoded);
+//        sysNoticeVo.setTitle("评论了该文章");
+//        sysNoticeVo.setContent(articleCommentParam.getTitle());
+//        sysNoticeVo.setMsgType(1);
 
 //        MessageProperties messageProperties = new MessageProperties();
 //        messageProperties.setContentType("text/plain");

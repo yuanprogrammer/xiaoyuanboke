@@ -18,10 +18,10 @@
             <artifactId>xy-system</artifactId>
             <version>1.0</version>
         </dependency>
-        <!-- eureka客户端依赖 -->
+        <!-- Web -->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <!-- 监控 -->
         <dependency>
@@ -78,10 +78,10 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
         </dependency>
-        <!-- OpenFeign -->
+        <!-- 邮箱依赖 -->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
         <!-- WebSocket -->
         <dependency>

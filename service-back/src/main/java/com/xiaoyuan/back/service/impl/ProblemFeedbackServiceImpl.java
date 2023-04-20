@@ -5,21 +5,18 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xiaoyuan.back.mapper.ProblemFeedbackMapper;
 import com.xiaoyuan.back.service.ProblemFeedbackService;
+import com.xiaoyuan.back.service.ThreadService;
 import com.xiaoyuan.common_util.convert.DateConverterUtil;
 import com.xiaoyuan.model.common.PageVo;
 import com.xiaoyuan.model.entity.ProblemFeedback;
-import com.xiaoyuan.model.feign.ThreePartyFeign;
-import com.xiaoyuan.model.param.mail.SendMailParam;
 import com.xiaoyuan.model.param.problem.ProblemQueryParam;
 import com.xiaoyuan.model.vo.ProblemFeedbackVo;
-import com.xiaoyuan.model.vo.PageUtils;
 import com.xiaoyuan.model.vo.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -33,7 +30,7 @@ import java.util.List;
 public class ProblemFeedbackServiceImpl extends ServiceImpl<ProblemFeedbackMapper, ProblemFeedback> implements ProblemFeedbackService {
 
     @Autowired
-    private ThreePartyFeign threePartyFeign;
+    private ThreadService threadService;
 
     @Override
     public R delete(Long id) {
@@ -69,20 +66,12 @@ public class ProblemFeedbackServiceImpl extends ServiceImpl<ProblemFeedbackMappe
                 + "\n" + "您所反馈的问题：" + problemFeedbackVo.getProblem() + "\n"
                 + "\n" + "感谢您的反馈 ❤";
 
-        SendMailParam sendMailParam = new SendMailParam();
-        sendMailParam.setTo(problemFeedbackVo.getEmail());
-        sendMailParam.setTheme("您反馈的问题已经解决");
-        sendMailParam.setContent(content);
-
-        R r = threePartyFeign.sendOneMail(sendMailParam);
-//        R r = restTemplate.postForObject("http://localhost:9005/common/api/mail/sendOne", sendMailParam, R.class);
-
-        boolean res = r != null && !r.getSuccess() ? r.getSuccess() : true;
+        threadService.sendSimpleMail(problemFeedbackVo.getEmail(), "您反馈的问题已经解决", content);
 
         ProblemFeedback problemFeedback = new ProblemFeedback();
         problemFeedback.setId(Long.parseLong(problemFeedbackVo.getId()));
         problemFeedback.setNoticeState('1');
-        return this.baseMapper.updateById(problemFeedback) == 0 && res ? R.fail("通知失败") : R.success();
+        return this.baseMapper.updateById(problemFeedback) == 0 ? R.fail("通知失败") : R.success();
     }
 
     /**

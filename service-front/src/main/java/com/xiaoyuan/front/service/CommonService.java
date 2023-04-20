@@ -67,7 +67,7 @@ public class CommonService {
         }else if (!rightCode.equals(permissionCode)) {
             return R.fail(HttpStatusEnum.ILLEGAL_OPERATION);
         }
-        threadService.sendOneSms(sendSmsCodeParam);
+//        threadService.sendOneSms(sendSmsCodeParam);
         return R.success();
     }
 

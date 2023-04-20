@@ -14,8 +14,6 @@
         <module>xy-model</module>
         <module>xy-common-util</module>
         <module>xy-system</module>
-        <module>service-three-party</module>
-        <module>service-eureka</module>
     </modules>
 
     <parent>
@@ -36,10 +34,6 @@
 
         <!-- Spring -->
         <spring-boot-starter-parent.version>2.3.7.RELEASE</spring-boot-starter-parent.version>
-
-        <!-- SpringCloud -->
-        <spring-cloud.version>2.2.10.RELEASE</spring-cloud.version>
-        <spring-cloud-parent.version>Hoxton.SR10</spring-cloud-parent.version>
 
         <!-- 数据操作 -->
         <mybatis-plus.version>3.5.0</mybatis-plus.version>
@@ -82,21 +76,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <!-- 微服务 -->
-            <!-- springCloud -->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud-parent.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-openfeign</artifactId>
-                <version>${spring-cloud.version}</version>
-            </dependency>
-
             <!-- Mybatis-Plus依赖 -->
             <dependency>
                 <groupId>com.baomidou</groupId>

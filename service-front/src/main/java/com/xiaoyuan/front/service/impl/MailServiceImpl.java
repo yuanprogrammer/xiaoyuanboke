@@ -1,6 +1,6 @@
-package com.xiaoyuan.three.service.impl;
+package com.xiaoyuan.front.service.impl;
 
-import com.xiaoyuan.three.service.MailService;
+import com.xiaoyuan.front.service.MailService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Value;

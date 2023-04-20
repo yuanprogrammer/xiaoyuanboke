@@ -5,11 +5,11 @@ server:
 spring:
   profiles:
     active: dev
+    include: email
   jackson:
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss
   application:
-#    name: back-server
     name: backServer
 
 ##########################  mybatis   ##########################

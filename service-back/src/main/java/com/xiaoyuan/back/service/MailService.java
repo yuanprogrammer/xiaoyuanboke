@@ -1,6 +1,4 @@
-package com.xiaoyuan.three.service;
-
-import com.xiaoyuan.model.vo.R;
+package com.xiaoyuan.back.service;
 
 import javax.mail.MessagingException;
 import java.io.UnsupportedEncodingException;

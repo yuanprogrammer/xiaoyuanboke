@@ -5,8 +5,6 @@ import org.quartz.SchedulerFactory;
 import org.quartz.impl.StdSchedulerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
-import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Scope;
@@ -23,7 +21,6 @@ import org.springframework.web.client.RestTemplate;
 @ComponentScan({"com.xiaoyuan"})
 @MapperScan({"com.xiaoyuan.back.mapper"})
 @EnableAsync
-@EnableFeignClients(basePackages = {"com.xiaoyuan"})
 public class BackApplication {
 
     public static void main(String[] args) {
@@ -32,7 +29,6 @@ public class BackApplication {
     }
 
     @Bean
-    @LoadBalanced
     public RestTemplate getRestTemplate() {
         return new RestTemplate();
     }

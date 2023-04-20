@@ -5,12 +5,12 @@ import com.xiaoyuan.front.mapper.FrontLogMapper;
 import com.xiaoyuan.front.mapper.UserOperationMapper;
 import com.xiaoyuan.model.entity.FrontLog;
 import com.xiaoyuan.model.entity.UserOperation;
-import com.xiaoyuan.model.feign.ThreePartyFeign;
-import com.xiaoyuan.model.param.SendSmsCodeParam;
 import com.xiaoyuan.model.param.mail.SendMailParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
+
+import java.io.UnsupportedEncodingException;
 
 /**
  * FileName:    ThreadService
@@ -22,13 +22,13 @@ import org.springframework.stereotype.Component;
 public class ThreadService {
 
     @Autowired
-    private ThreePartyFeign threePartyFeign;
-
-    @Autowired
     private UserOperationMapper userOperationMapper;
 
     @Autowired
     private FrontLogMapper frontLogMapper;
+
+    @Autowired
+    private MailService mailService;
 
     // 文章浏览量 + 1
     @Async("taskExecutor")
@@ -48,18 +48,18 @@ public class ThreadService {
     @Async("taskExecutor")
     public void sendSimpleMail(String to, String theme, String content) {
         // openFeign
-        SendMailParam sendMailParam = new SendMailParam();
-        sendMailParam.setTo(to);
-        sendMailParam.setTheme(theme);
-        sendMailParam.setContent(content);
+//        SendMailParam sendMailParam = new SendMailParam();
+//        sendMailParam.setTo(to);
+//        sendMailParam.setTheme(theme);
+//        sendMailParam.setContent(content);
 
-        threePartyFeign.sendOneMail(sendMailParam);
+        try {
+            mailService.sendSampleMail(to, theme, content);
+        }catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
     }
 
-    @Async("taskExecutor")
-    public void sendOneSms(SendSmsCodeParam sendSmsCodeParam) {
-        threePartyFeign.sendOneSms(sendSmsCodeParam);
-    }
 
     @Async("taskExecutor")
     public void recordUserOperation(Long number, String msg) {

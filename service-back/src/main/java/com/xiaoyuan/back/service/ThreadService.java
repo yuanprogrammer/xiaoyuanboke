@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
+import java.io.UnsupportedEncodingException;
+
 /**
  * FileName:    ThreadService
  * Author:      小袁
@@ -14,8 +16,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class ThreadService {
 
-//    @Autowired
-//    private MailService mailService;
+    @Autowired
+    private MailService mailService;
 
     @Async("taskExecutor")
     public void sendProblemSolveNoticeToUser(ProblemFeedbackVo problemFeedbackVo) {
@@ -25,5 +27,20 @@ public class ThreadService {
                 + "\n" + "感谢您的反馈 ❤";
         // 发送邮件通知
 //        mailService.sendSimpleMail(problemFeedbackVo.getEmail(), "您反馈的问题已经解决", content);
+    }
+
+    /**
+     * 发送邮箱
+     * @param to 收件人
+     * @param theme 主题
+     * @param content 内容
+     */
+    @Async("taskExecutor")
+    public void sendSimpleMail(String to, String theme, String content) {
+        try {
+            mailService.sendSampleMail(to, theme, content);
+        }catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
     }
 }
