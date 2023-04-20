@@ -32,19 +32,10 @@ public class ArchiveController {
     @Autowired
     private HomeMessageService homeMessageService;
 
-    //引用redis 缓存页面
-    @Autowired
-    private RedisTemplate<String, String> redisTemplate;
-
-    //手动渲染前端页面，视图解析器
-    @Autowired
-    private ThymeleafViewResolver thymeleafViewResolver;
-
     /**
      * 归档页面
      */
     @GetMapping(value = "/archive", produces = "text/html;charset=utf-8")
-    @ResponseBody
     public String toArchivePage(Model model, HttpServletRequest request, HttpServletResponse response) {
         // 热门文章
         model.addAttribute("hostArticleList", articleService.findHostsArticle());
@@ -59,20 +50,6 @@ public class ArchiveController {
         // 留言数量
         model.addAttribute("messageTotal", homeMessageService.findMessageTotal());
 
-        //Redis中获取页面，如果不为空 直接返回页面
-        String HTML = redisTemplate.opsForValue().get("archive");
-        if (!StringUtils.isEmpty(HTML)) {
-            return HTML;
-        }
-
-        //如果为空 渲染页面 并且存入redis
-        WebContext webContext = new WebContext(request, response, request.getServletContext(), request.getLocale(), model.asMap());
-        //去渲染页面 页面需要模板的名称 用来以后调用  还需要IContext 上面获得IContext 传入
-        HTML = thymeleafViewResolver.getTemplateEngine().process("archive/archive", webContext);
-        if (!StringUtils.isEmpty(HTML)) {
-            // 丢入redis缓存
-            redisTemplate.opsForValue().set("archive", HTML);
-        }
-        return HTML;
+        return "archive/archive";
     }
 }

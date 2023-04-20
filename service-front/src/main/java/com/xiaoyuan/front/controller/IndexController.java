@@ -25,32 +25,8 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping(value = {"/", "/index", "/index"})
 public class IndexController {
 
-    //引用redis 缓存页面
-    @Autowired
-    private RedisTemplate<String, String> redisTemplate;
-    //手动渲染前端页面，视图解析器
-    @Autowired
-    private ThymeleafViewResolver thymeleafViewResolver;
-
     @GetMapping(produces = "text/html;charset=utf-8")
-    @ResponseBody
     public String toIndex(Model model, HttpServletRequest request, HttpServletResponse response) {
-        //Redis中获取页面，如果不为空 直接返回页面
-
-        String index = redisTemplate.opsForValue().get("index");
-        if (!StringUtils.isEmpty(index)) {
-            return index;
-        }
-
-        //如果为空 渲染页面 并且存入redis
-        WebContext webContext = new WebContext(request, response, request.getServletContext(), request.getLocale(), model.asMap());
-        //去渲染页面 页面需要模板的名称 用来以后调用  还需要IContext 上面获得IContext 传入
-        index = thymeleafViewResolver.getTemplateEngine().process("index", webContext);
-        if (!StringUtils.isEmpty(index)) {
-            // 丢入redis缓存
-            redisTemplate.opsForValue().set("index", index);
-        }
-
-        return index;
+        return "index";
     }
 }
