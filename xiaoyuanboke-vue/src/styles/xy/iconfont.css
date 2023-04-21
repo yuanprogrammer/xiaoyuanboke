@@ -1,0 +1,91 @@
+@font-face {
+  font-family: "xy-icon"; /* Project id 3256613 */
+  src: url('iconfont.woff2?t=1666603273126') format('woff2'),
+       url('iconfont.woff?t=1666603273126') format('woff'),
+       url('iconfont.ttf?t=1666603273126') format('truetype');
+}
+
+.xy-icon {
+  font-family: "xy-icon" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.xyicon-QQ1:before {
+  content: "\e73e";
+}
+
+.xyicon-weixin1:before {
+  content: "\e73b";
+}
+
+.xyicon-collect:before {
+  content: "\e906";
+}
+
+.xyicon-login:before {
+  content: "\e6bd";
+}
+
+.xyicon-writer:before {
+  content: "\e67b";
+}
+
+.xyicon-foot:before {
+  content: "\e638";
+}
+
+.xyicon-comment:before {
+  content: "\e601";
+}
+
+.xyicon-eyes:before {
+  content: "\e661";
+}
+
+.xyicon-give-good:before {
+  content: "\ec7f";
+}
+
+.xyicon-weixin:before {
+  content: "\e600";
+}
+
+.xyicon-weibo:before {
+  content: "\e63d";
+}
+
+.xyicon-erweima:before {
+  content: "\e61b";
+}
+
+.xyicon-QQ:before {
+  content: "\e882";
+}
+
+.xyicon-classify:before {
+  content: "\e64e";
+}
+
+.xyicon-hot:before {
+  content: "\e647";
+}
+
+.xyicon-clock:before {
+  content: "\e61e";
+}
+
+.xyicon-down-arrow:before {
+  content: "\e609";
+}
+
+.xyicon-search:before {
+  content: "\e693";
+}
+
+.xyicon-sort:before {
+  content: "\e7ce";
+}
+
