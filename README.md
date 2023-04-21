@@ -40,15 +40,11 @@ https://note.youdao.com/s/ULByiIxQ
 http://180.76.158.195/ （前台）<br>
 http://180.76.158.195/back-manager （后台）<br>
 
-## 后端工程结构
-
-![未命名文件](https://user-images.githubusercontent.com/86464456/201698374-badcbf7c-9625-48ff-9322-7672727e5c2e.png)
-
 ### 后端开源地址：
 https://github.com/yuanprogrammer/xiaoyuanboke
 
 ### 前端开源地址：
-https://github.com/yuanprogrammer/xiaoyuanboke-vue
+https://github.com/yuanprogrammer/xiaoyuanboke/tree/main/xiaoyuanboke-vue
 
 
 ## 代码相关运行截图 （部分）
