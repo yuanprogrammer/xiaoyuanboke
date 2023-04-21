@@ -11,6 +11,10 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
   application:
     name: backServer
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
 
 ##########################  mybatis   ##########################
 mybatis-plus:

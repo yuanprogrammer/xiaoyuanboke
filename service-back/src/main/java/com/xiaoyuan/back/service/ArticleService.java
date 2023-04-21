@@ -7,6 +7,7 @@ import com.xiaoyuan.model.param.ArticleParam;
 import com.xiaoyuan.model.param.article.ArticleQueryParam;
 import com.xiaoyuan.model.vo.article.ArticleVo;
 import com.xiaoyuan.model.vo.R;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -49,4 +50,11 @@ public interface ArticleService extends IService<Article> {
      * @return 修改结果
      */
     R modifyArticleById(ArticleParam articleParam);
+
+    /**
+     * 图片上传
+     * @param file 图片文件
+     * @return 图片地址
+     */
+    String uploadImage(MultipartFile file);
 }

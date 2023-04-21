@@ -1,30 +1,47 @@
 package com.xiaoyuan.back.service.impl;
 
+import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.google.gson.Gson;
+import com.qiniu.common.QiniuException;
+import com.qiniu.http.Response;
+import com.qiniu.storage.Configuration;
+import com.qiniu.storage.Region;
+import com.qiniu.storage.UploadManager;
+import com.qiniu.storage.model.DefaultPutRet;
+import com.qiniu.util.Auth;
+import com.xiaoyuan.back.constants.QiniuProperties;
 import com.xiaoyuan.back.mapper.*;
 import com.xiaoyuan.back.service.ArticleService;
 import com.xiaoyuan.back.service.CategoryService;
 import com.xiaoyuan.back.service.helper.CommonUserServiceHelper;
 import com.xiaoyuan.common_util.convert.TextOperation;
+import com.xiaoyuan.common_util.generate.RandomUtil;
 import com.xiaoyuan.model.common.PageVo;
 import com.xiaoyuan.model.entity.Article;
 import com.xiaoyuan.model.entity.ArticleCategory;
 import com.xiaoyuan.model.entity.ArticleContent;
 import com.xiaoyuan.model.param.ArticleParam;
 import com.xiaoyuan.model.param.article.ArticleQueryParam;
+import com.xiaoyuan.model.vo.R;
 import com.xiaoyuan.model.vo.article.ArticlePublishVo;
 import com.xiaoyuan.model.vo.article.ArticleVo;
-import com.xiaoyuan.model.vo.R;
+import com.xiaoyuan.system.exception.CustomerException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * FileName:    ArticleServiceImpl
@@ -74,7 +91,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         // 提取摘要
         if (articleParam.getDigest() != null) {
             article.setDigest(articleParam.getDigest());
-        }else {
+        } else {
             String digest = TextOperation.getTextFromHtml(articleParam.getArticleContentParam().getContentHtml());
             article.setDigest(TextOperation.getArticleDigestFromText(digest)); // 摘要
         }
@@ -228,6 +245,51 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         }
 
         return modifyArticleResult == 0 || modifyArticleContentResult == 0 ? R.fail("修改失败！") : R.success("文章修改成功！");
+    }
+
+    @Override
+    public String uploadImage(MultipartFile file) {
+        if (file.getSize() > 1024 * 1024 * 5) {
+            throw new CustomerException("图片不得超过5MB！");
+        }
+
+        if (!file.getContentType().startsWith("image/")) {
+            throw new CustomerException("请上传图片类型文件！");
+        }
+
+        // 上传到七牛云
+        //构造一个带指定 Region 对象的配置类
+        Configuration cfg = new Configuration(Region.region2());
+        cfg.resumableUploadAPIVersion = Configuration.ResumableUploadAPIVersion.V2;// 指定分片上传版本
+        //...其他参数参考类注释
+
+        UploadManager uploadManager = new UploadManager(cfg);
+        //...生成上传凭证，然后准备上传
+        String accessKey = QiniuProperties.ACCESS_KEY;
+        String secretKey = QiniuProperties.SECRET_KEY;
+        String bucket = QiniuProperties.BUCKET;
+
+        //默认不指定key的情况下，以文件内容的hash值作为文件名
+        String key = "article/" + RandomUtil.randomStrUUID(false) + "." + FileUtil.extName(file.getOriginalFilename());
+
+        Auth auth = Auth.create(accessKey, secretKey);
+        String upToken = auth.uploadToken(bucket);
+        try {
+            Response response = uploadManager.put(file.getInputStream(), key, upToken, null, null);
+            new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
+        } catch (QiniuException ex) {
+            Response r = ex.response;
+            System.err.println(r.toString());
+            try {
+                System.err.println(r.bodyString());
+            } catch (QiniuException ex2) {
+                //ignore
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return QiniuProperties.URL_PREFIX + key;
     }
 
     private ArticlePublishVo copy(Article article, Long id) {

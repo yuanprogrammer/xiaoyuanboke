@@ -4,7 +4,6 @@ import cn.dev33.satoken.annotation.SaCheckPermission;
 import cn.dev33.satoken.annotation.SaMode;
 import cn.hutool.core.util.StrUtil;
 import com.xiaoyuan.back.service.ArticleService;
-import com.xiaoyuan.back.service.SchedulerService;
 import com.xiaoyuan.common_util.annotation.IsAdmin;
 import com.xiaoyuan.model.param.ArticleParam;
 import com.xiaoyuan.model.param.article.ArticleQueryParam;
@@ -13,6 +12,10 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * FileName:    ArticleController
@@ -28,16 +31,14 @@ public class ArticleController {
     @Autowired
     private ArticleService articleService;
 
-    @Autowired
-    private SchedulerService schedulerService;
-
     @PostMapping("publish")
     @SaCheckPermission(value = {"ARTICLE:PUBLISH"}, mode = SaMode.OR)
     public R publishArticle(@RequestBody ArticleParam articleParam) {
         if (StrUtil.isEmpty(articleParam.getPublishTime())) {
             return articleService.insert(articleParam);
         }else {
-            return schedulerService.publishArticle(articleParam);
+//            return schedulerService.publishArticle(articleParam);
+            return R.fail("定时发布功能暂时关闭");
         }
     }
 
@@ -73,5 +74,16 @@ public class ArticleController {
     @SaCheckPermission(value = {"ARTICLE:SELECT"}, mode = SaMode.OR)
     public R getArticlePublish(@PathVariable(value = "articleId") String articleId) {
         return articleService.getArticlePublishById(Long.parseLong(articleId));
+    }
+
+    /**
+     * 图片上传
+     */
+    @PostMapping("upload")
+    @SaCheckPermission(value = {"ARTICLE:PUBLISH"}, mode = SaMode.OR)
+    public R uploadImage(@RequestParam(value = "image")MultipartFile file) {
+        Map<String, String> map = new HashMap<>();
+        map.put("url", articleService.uploadImage(file));
+        return R.success(map);
     }
 }

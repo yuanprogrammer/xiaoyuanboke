@@ -1,13 +1,10 @@
 package com.xiaoyuan.back;
 
 import org.mybatis.spring.annotation.MapperScan;
-import org.quartz.SchedulerFactory;
-import org.quartz.impl.StdSchedulerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Scope;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.client.RestTemplate;
 
@@ -31,12 +28,5 @@ public class BackApplication {
     @Bean
     public RestTemplate getRestTemplate() {
         return new RestTemplate();
-    }
-
-    // 调度器工厂 单例模式
-    @Bean
-    @Scope(value = "singleton")
-    public SchedulerFactory getSchedulerFactory() {
-        return new StdSchedulerFactory();
     }
 }
