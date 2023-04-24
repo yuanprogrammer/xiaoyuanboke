@@ -43,7 +43,7 @@
                 FROM
                     xy_article art
         -- 	左拼接查询用户信息
-                        LEFT JOIN xy_common_user u ON u.id = art.author_id
+                        LEFT JOIN sys_user u ON u.id = art.author_id
         -- 	左拼接查询评论数量
                         LEFT JOIN (SELECT article_id, count(id) AS count FROM xy_article_comment GROUP BY article_id) com ON com.article_id = art.id
         -- 左拼接查询点赞数量

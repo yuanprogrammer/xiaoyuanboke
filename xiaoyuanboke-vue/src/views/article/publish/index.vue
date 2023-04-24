@@ -390,7 +390,7 @@ export default {
               message: '发布成功！',
               type: 'success'
             })
-            // this.$router.push({ path: '/article' })
+            this.$router.push({ path: '/article' })
           })
         }else {
           article.updateArticle(this.article).then((response) => {

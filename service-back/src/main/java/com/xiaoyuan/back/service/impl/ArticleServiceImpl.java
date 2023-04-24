@@ -1,7 +1,7 @@
 package com.xiaoyuan.back.service.impl;
 
+import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -96,9 +96,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
             article.setDigest(TextOperation.getArticleDigestFromText(digest)); // 摘要
         }
         article.setTags(articleParam.getTags()); // 标签
-        if (StrUtil.isNotEmpty(articleParam.getUserId())) {
-            article.setAuthorId(Long.parseLong(articleParam.getUserId()));
-        }
+        article.setAuthorId(StpUtil.getLoginIdAsLong());
 
         // 插入数据, 获取回传的文章编号（MyBatis-Plus内部封装）
         articleMapper.insert(article);
