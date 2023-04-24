@@ -35,7 +35,6 @@ public class ProblemFeedbackServiceImpl extends ServiceImpl<ProblemFeedbackMappe
             return R.fail().message("参数错误");
         }
 
-        // check email -->> length is > 33 ? or legality ?
         if (email.length() > 33 || !StringMatch.isEmail(email)) {
             return R.fail().message("邮箱格式错误");
         }

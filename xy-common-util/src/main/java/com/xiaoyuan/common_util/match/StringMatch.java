@@ -53,8 +53,12 @@ public final class StringMatch {
      * @return true or false
      */
     public static boolean isEmail(String email) {
-        Pattern emailPattern = Pattern.compile("^([a-zA-Z]|[0-9])(\\\\w|\\\\-)+@[a-zA-Z0-9]+\\\\.([a-zA-Z]{2,4})$");
+        Pattern emailPattern = Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
         return emailPattern.matcher(email).matches();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(isEmail("1971788445@qq.com"));
     }
 
     /**
