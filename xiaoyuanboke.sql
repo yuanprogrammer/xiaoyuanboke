@@ -364,7 +364,7 @@ INSERT INTO `sys_user` VALUES (3, NULL, '[6]', 'sysUser:f634555e-a72b-4dc8-a420-
 DROP TABLE IF EXISTS `xy_article`;
 CREATE TABLE `xy_article`  (
   `id` bigint(20) NOT NULL COMMENT '文章ID',
-  `author_id` bigint(20) NULL DEFAULT 1515623159565447170 COMMENT '作者ID',
+  `author_id` bigint(20) NOT NULL COMMENT '作者ID',
   `title` varchar(81) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '文章标题',
   `cover` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '文章封面',
   `digest` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '文章摘要',
