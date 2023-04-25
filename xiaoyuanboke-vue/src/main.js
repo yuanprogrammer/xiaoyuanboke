@@ -2,7 +2,7 @@ import Vue from 'vue'
 
 import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 
-import locale from 'element-ui/lib/locale/lang/en' // lang i18n
+// import locale from 'element-ui/lib/locale/lang/en' // lang i18n
 
 import '@/styles/index.scss' // global css
 
@@ -12,22 +12,20 @@ import store from './store'
 
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-import TDesign from 'tdesign-vue';
-// 引入组件库全局样式资源
 
 import '@/icons' // icon
 import '@/permission' // permission control
 
-import leMarkdownEditor from 'le-markdown-editor'
-import LemonIMUI from 'lemon-imui';
-import 'lemon-imui/dist/index.css';
+// import leMarkdownEditor from 'le-markdown-editor'
+// import LemonIMUI from 'lemon-imui';
+// import 'lemon-imui/dist/index.css';
 
 
-Vue.use(leMarkdownEditor)
+// Vue.use(leMarkdownEditor)
 
 Vue.use(ElementUI)
 
-Vue.use(LemonIMUI);
+// Vue.use(LemonIMUI);
 
 Vue.config.productionTip = false
 // 全局WebSocket
