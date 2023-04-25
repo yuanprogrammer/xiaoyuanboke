@@ -2,9 +2,18 @@ server:
   port: 9003
 spring:
   profiles:
-    active: dev
+    active: @profile.active@
     include: email
   application:
     name: frontServer
   mvc:
     static-path-pattern: /static/**
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*.xml
+  #  configuration:
+  #    # 打印SQL语句
+  #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      table-prefix: xy_
+  type-aliases-package: com.xiaoyuan.model.entity

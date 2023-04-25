@@ -33,7 +33,7 @@
         <!--滚动输出策略-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--路径-->
-            <fileNamePattern>logs/info/info.%d.log</fileNamePattern>
+            <fileNamePattern>./logs/info/info.%d.log</fileNamePattern>
         </rollingPolicy>
     </appender>
 
@@ -52,7 +52,7 @@
         <!--滚动输出策略-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--路径-->
-            <fileNamePattern>logs/warn/warn.%d.log</fileNamePattern>
+            <fileNamePattern>./logs/warn/warn.%d.log</fileNamePattern>
         </rollingPolicy>
     </appender>
 
@@ -69,7 +69,7 @@
         <!--滚动输出策略-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--路径-->
-            <fileNamePattern>logs/error/error.%d.log</fileNamePattern>
+            <fileNamePattern>./logs/error/error.%d.log</fileNamePattern>
         </rollingPolicy>
     </appender>
 
