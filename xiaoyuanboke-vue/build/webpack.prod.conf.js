@@ -11,6 +11,8 @@ const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CompressionWebpackPlugin = require("compression-webpack-plugin"); //引入打包压缩插件
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir)
@@ -38,6 +40,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     chunkFilename: utils.assetsPath('js/[name].[chunkhash:8].js')
   },
   plugins: [
+    // new BundleAnalyzerPlugin(),
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
       'process.env': env
@@ -97,7 +100,17 @@ const webpackConfig = merge(baseWebpackConfig, {
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
       }
-    ])
+    ]),
+    new CompressionWebpackPlugin({
+      filename: "[path].gz[query]", //压缩后的文件名
+      algorithm: "gzip", //使用gzip压缩
+      test: new RegExp(
+        '\\.(' + ['js', 'css'].join('|') + ')$'
+      ), //压缩文件格式
+      threshold: 10240, //只有大小于该值的资源会被处理 单位是bytes 默认是0
+      minRatio: 0.8, //压缩率小于1才会压缩
+      deleteOriginalAssets: false, //是否删除原资源
+    }),
   ],
   optimization: {
     splitChunks: {
@@ -132,7 +145,15 @@ const webpackConfig = merge(baseWebpackConfig, {
       // duplicated CSS from different components can be deduped.
       new OptimizeCSSAssetsPlugin()
     ]
-  }
+  },
+  externals:{
+    'vue':'Vue',
+    'vuex':'Vuex',
+    'vue-router': 'VueRouter',
+    'axios':'axios',
+    'element-ui':'ELEMENT',
+    'le-markdown-editor':'le-markdown-editor',
+  },
 })
 
 if (config.build.productionGzip) {
