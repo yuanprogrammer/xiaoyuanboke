@@ -8,7 +8,6 @@
         <result column="cover" property="cover"/>
         <result column="digest" property="digest"/>
         <result column="tags" property="tags"/>
-        <result column="authorId" property="authorId"/>
         <result column="authorName" property="authorName"/>
         <result column="authorAvatar" property="authorAvatar"/>
         <result column="view_count" property="viewCount"/>
@@ -24,12 +23,9 @@
         -- 文章表数据
         art.id,
         art.title,
---         art.cover,
---         art.digest,
         art.tags,
         art.gmt_create,
         -- 	用户信息
-        u.id as authorId,
         u.nickname as authorName,
         u.avatar as authorAvatar,
         -- 	浏览量

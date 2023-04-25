@@ -18,9 +18,6 @@
             <el-form-item label="作者名称">
               <span>{{ props.row.authorName }}</span>
             </el-form-item>
-            <el-form-item label="作者编号">
-              <span>{{ props.row.authorId }}</span>
-            </el-form-item>
 
             <!--
               文章标签
@@ -62,7 +59,7 @@
               <span>{{ props.row.commentCount }}</span>
             </el-form-item>
             <el-form-item label="发布时间">
-              <span>{{ props.row.gmtCreate }}</span>
+              <span>{{ props.row.publishTime }}</span>
             </el-form-item>
           </el-form>
         </template>

@@ -278,11 +278,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         } catch (QiniuException ex) {
             Response r = ex.response;
             System.err.println(r.toString());
-            try {
-                System.err.println(r.bodyString());
-            } catch (QiniuException ex2) {
-                //ignore
-            }
+            throw new CustomerException("七牛云上传失败！请检查配置");
         } catch (IOException e) {
             e.printStackTrace();
         }

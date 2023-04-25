@@ -28,11 +28,6 @@ public class ArticleVo implements Serializable {
     private String number;
 
     /**
-     * 作者编号
-     */
-    private String authorId;
-
-    /**
      * 文章标题
      */
     private String title;
