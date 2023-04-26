@@ -28,9 +28,9 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
         this.setFieldValByName("problemState", '0', metaObject);
         this.setFieldValByName("noticeState", '0', metaObject);
         // 随机背景图
-        this.setFieldValByName("background", "https://article.xiaoyuan-boke.com/background/m_bg" + (new Random().nextInt(8) + 1)+  ".jpg", metaObject);
+        this.setFieldValByName("background", "https://file.xiaoyuan-boke.com/article/backgroup/m_bg" + (new Random().nextInt(8) + 1)+  ".jpg", metaObject);
         // 默认头像
-        this.setFieldValByName("avatar", "https://user.xiaoyuan-boke.com/user/avatar/user_default.png", metaObject);
+        this.setFieldValByName("avatar", "https://file.xiaoyuan-boke.com/user/avatar/user_avatar_default.jpeg", metaObject);
         // 初始名字
         this.setFieldValByName("nickname", "未设置昵称", metaObject);
     }

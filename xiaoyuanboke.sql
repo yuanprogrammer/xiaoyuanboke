@@ -181,9 +181,9 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, NULL, '[2]', 'sysUser:8cb3150a-cf27-4748-ae4f-e58ba3faa7c9', 'root', 'b9be11166d72e9e3ae7fd407165e4bd2', '管理员', 'https://user.xiaoyuan-boke.com/xiaoyuan-avatar.jpg', '0', '0');
-INSERT INTO `sys_user` VALUES (2, NULL, '[1]', 'sysUser:5296e57a-9e96-4bf9-ba74-903b01ff89f7', 'visitor', 'dd1a0f5091fc4096e1ce3a99e2d6e468', '游客', 'https://user.xiaoyuan-boke.com/xiaoyuan-avatar.jpg', '0', '0');
-INSERT INTO `sys_user` VALUES (3, NULL, '[6]', 'sysUser:f634555e-a72b-4dc8-a420-36e2d3060c38', 'author', '9b0df5635ad72060bb548e118a910506', '笔者', 'https://user.xiaoyuan-boke.com/xiaoyuan-avatar.jpg', '0', '0');
+INSERT INTO `sys_user` VALUES (1, NULL, '[2]', 'sysUser:8cb3150a-cf27-4748-ae4f-e58ba3faa7c9', 'root', 'b9be11166d72e9e3ae7fd407165e4bd2', '管理员', 'https://file.xiaoyuan-boke.com/user/avatar/user_avatar_default.jpeg', '0', '0');
+INSERT INTO `sys_user` VALUES (2, NULL, '[1]', 'sysUser:5296e57a-9e96-4bf9-ba74-903b01ff89f7', 'visitor', 'dd1a0f5091fc4096e1ce3a99e2d6e468', '游客', 'https://file.xiaoyuan-boke.com/user/avatar/user_avatar_default.jpeg', '0', '0');
+INSERT INTO `sys_user` VALUES (3, NULL, '[6]', 'sysUser:f634555e-a72b-4dc8-a420-36e2d3060c38', 'author', '9b0df5635ad72060bb548e118a910506', '笔者', 'https://file.xiaoyuan-boke.com/user/avatar/user_avatar_default.jpeg', '0', '0');
 
 -- ----------------------------
 -- Table structure for xy_article

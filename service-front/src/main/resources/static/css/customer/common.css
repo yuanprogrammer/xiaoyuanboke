@@ -111,7 +111,7 @@ li {
 
 /* 文章详细页背景图片 */
 .detail_bg {
-    background: url('https://article.xiaoyuan-boke.com/background/detail_bg.jpg') fixed no-repeat;
+    background: url('https://file.xiaoyuan-boke.com/article/background/detail_bg.jpg') fixed no-repeat;
     background-size: 100% 100%;
     background-positio: center;
 }

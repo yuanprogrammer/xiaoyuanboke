@@ -1,6 +1,6 @@
 <h1 align="center"><a href="https://github.com/xiaoyuanboke" target="_blank">小袁博客平台 —— 后端项目</a></h1>
 <p align="center">
-  <a href="https://blog.csdn.net/weixin_47971206?spm=1000.2115.3001.5343"><img alt="author" src="https://user.xiaoyuan-boke.com/svg/author-xiaoyuan.svg"/></a>
+  <a href="https://blog.csdn.net/weixin_47971206?spm=1000.2115.3001.5343"><img alt="author" src="https://file.xiaoyuan-boke.com/project/svg/author-xiaoyuan.svg"/></a>
   <a href="https://www.oracle.com/technetwork/java/javase/downloads/index.html"><img alt="JDK" src="https://img.shields.io/badge/jdk1.8.0_131-orange.svg"/></a>
   <a href="https://docs.spring.io/spring-boot/docs/2.2.1.RELEASE/reference/html/"><img alt="Spring Boot" src="https://img.shields.io/badge/Spring Boot-2.1.0.RELEASE-brightgreen.svg"/></a>
   <a href="https://github.com/yuanprogrammer/xiaoyuanboke/blob/master/LICENSE"><img alt="LICENSE" src="https://img.shields.io/github/license/yuanprogrammer/xiaoyuanboke.svg"/></a>

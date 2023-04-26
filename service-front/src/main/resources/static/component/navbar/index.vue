@@ -8,7 +8,7 @@
             <button type="button" class="zd" id="zd">
               <span class="glyphicon glyphicon-align-justify"></span>
             </button>
-            <a href="/index" class="navbar-brand"><img src="https://user.xiaoyuan-boke.com/logo.png"
+            <a href="/index" class="navbar-brand"><img src="https://file.xiaoyuan-boke.com/project/logo.png"
                                                        alt="LOGO"></a>
           </div>
           <div class="collapse navbar-collapse" id="daohangtiao">
