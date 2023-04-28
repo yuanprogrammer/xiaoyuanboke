@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xiaoyuan.back.mapper.ArticleMapper">
 
-    <resultMap id="ArticleVoMap" type="com.xiaoyuan.model.vo.article.ArticleVo">
+    <resultMap id="ArticleVoMap" type="com.xiaoyuan.common.vo.article.ArticleVo">
         <id column="id" property="id"/>
         <result column="title" property="title"/>
         <result column="cover" property="cover"/>

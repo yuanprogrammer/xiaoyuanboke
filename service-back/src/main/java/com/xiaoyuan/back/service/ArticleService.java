@@ -1,12 +1,12 @@
 package com.xiaoyuan.back.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.xiaoyuan.model.common.PageVo;
-import com.xiaoyuan.model.entity.Article;
-import com.xiaoyuan.model.param.ArticleParam;
-import com.xiaoyuan.model.param.article.ArticleQueryParam;
-import com.xiaoyuan.model.vo.article.ArticleVo;
-import com.xiaoyuan.model.vo.R;
+import com.xiaoyuan.common.vo.PageVo;
+import com.xiaoyuan.common.pojo.Article;
+import com.xiaoyuan.common.param.ArticleParam;
+import com.xiaoyuan.common.param.article.ArticleQueryParam;
+import com.xiaoyuan.common.vo.article.ArticleVo;
+import com.xiaoyuan.common.vo.R;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;

@@ -2,7 +2,7 @@ package com.xiaoyuan.back.service;
 
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.xiaoyuan.model.entity.ArticleCategory;
+import com.xiaoyuan.common.pojo.ArticleCategory;
 
 /**
  * FileName:    ArticleCategoryService

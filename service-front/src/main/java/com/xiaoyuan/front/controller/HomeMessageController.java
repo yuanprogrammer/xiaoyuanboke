@@ -2,8 +2,8 @@ package com.xiaoyuan.front.controller;
 
 import com.xiaoyuan.front.service.HomeMessageService;
 import com.xiaoyuan.front.vo.param.HomeMessageParam;
-import com.xiaoyuan.model.vo.PageUtils;
-import com.xiaoyuan.model.vo.R;
+import com.xiaoyuan.common.vo.PageUtils;
+import com.xiaoyuan.common.vo.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

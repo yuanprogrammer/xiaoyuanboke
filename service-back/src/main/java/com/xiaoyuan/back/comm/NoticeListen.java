@@ -2,8 +2,8 @@
 //
 //import cn.hutool.json.JSONUtil;
 //import com.rabbitmq.client.Channel;
-//import com.xiaoyuan.model.constants.MessageQueueConstants;
-//import com.xiaoyuan.model.vo.SysNoticeVo;
+//import com.xiaoyuan.common.constants.MessageQueueConstants;
+//import com.xiaoyuan.common.vo.SysNoticeVo;
 //import lombok.extern.slf4j.Slf4j;
 //import org.springframework.amqp.core.Message;
 //import org.springframework.amqp.rabbit.annotation.RabbitHandler;

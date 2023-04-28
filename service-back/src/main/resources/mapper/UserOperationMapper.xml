@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xiaoyuan.back.mapper.UserOperationMapper">
 
-    <select id="selectUserOperationList" parameterType="hashmap" resultType="com.xiaoyuan.model.vo.UserOperationVo">
+    <select id="selectUserOperationList" parameterType="hashmap" resultType="com.xiaoyuan.common.vo.UserOperationVo">
         SELECT
             a.id,
             b.nickname,

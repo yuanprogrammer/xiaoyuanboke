@@ -1,5 +1,5 @@
 // 请求地址
-const BASE_API = 'http://127.0.0.1:9003';
+const BASE_API = 'http://localhost:9003';
 // 创建axios实例
 const service = axios.create({
   baseURL: BASE_API, // api 的 base_url

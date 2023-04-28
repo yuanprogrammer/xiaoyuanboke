@@ -1,9 +1,9 @@
 package com.xiaoyuan.back.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.xiaoyuan.model.entity.SysPermission;
-import com.xiaoyuan.model.param.role.PermissionRoleParam;
-import com.xiaoyuan.model.vo.SysPermissionVo;
+import com.xiaoyuan.common.pojo.SysPermission;
+import com.xiaoyuan.common.param.role.PermissionRoleParam;
+import com.xiaoyuan.common.vo.SysPermissionVo;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

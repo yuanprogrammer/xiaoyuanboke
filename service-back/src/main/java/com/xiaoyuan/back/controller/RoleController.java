@@ -3,11 +3,11 @@ package com.xiaoyuan.back.controller;
 import cn.dev33.satoken.annotation.SaCheckPermission;
 import cn.dev33.satoken.annotation.SaMode;
 import com.xiaoyuan.back.service.SysRoleService;
-import com.xiaoyuan.model.param.role.DeleteRoleParam;
-import com.xiaoyuan.model.param.role.InsertRoleParam;
-import com.xiaoyuan.model.param.role.PermissionRoleParam;
-import com.xiaoyuan.model.param.role.RoleQueryParam;
-import com.xiaoyuan.model.vo.R;
+import com.xiaoyuan.common.param.role.DeleteRoleParam;
+import com.xiaoyuan.common.param.role.InsertRoleParam;
+import com.xiaoyuan.common.param.role.PermissionRoleParam;
+import com.xiaoyuan.common.param.role.RoleQueryParam;
+import com.xiaoyuan.common.vo.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

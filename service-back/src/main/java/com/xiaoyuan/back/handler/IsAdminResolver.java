@@ -1,7 +1,7 @@
 package com.xiaoyuan.back.handler;
 
 import cn.dev33.satoken.stp.StpUtil;
-import com.xiaoyuan.common_util.annotation.IsAdmin;
+import com.xiaoyuan.common.annotation.IsAdmin;
 import org.springframework.core.MethodParameter;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.support.WebDataBinderFactory;

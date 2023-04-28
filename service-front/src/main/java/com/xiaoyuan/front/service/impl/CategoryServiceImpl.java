@@ -3,8 +3,8 @@ package com.xiaoyuan.front.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xiaoyuan.front.mapper.CategoryMapper;
 import com.xiaoyuan.front.service.CategoryService;
-import com.xiaoyuan.model.entity.Category;
-import com.xiaoyuan.model.vo.R;
+import com.xiaoyuan.common.pojo.Category;
+import com.xiaoyuan.common.vo.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

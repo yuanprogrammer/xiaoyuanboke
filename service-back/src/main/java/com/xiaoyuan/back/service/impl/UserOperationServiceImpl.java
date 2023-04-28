@@ -6,10 +6,10 @@ import com.alibaba.fastjson.TypeReference;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xiaoyuan.back.mapper.UserOperationMapper;
 import com.xiaoyuan.back.service.UserOperationService;
-import com.xiaoyuan.model.entity.UserOperation;
-import com.xiaoyuan.model.param.UserOperationParam;
-import com.xiaoyuan.model.enums.HttpStatusEnum;
-import com.xiaoyuan.model.vo.R;
+import com.xiaoyuan.common.pojo.UserOperation;
+import com.xiaoyuan.common.param.UserOperationParam;
+import com.xiaoyuan.common.enums.HttpStatusEnum;
+import com.xiaoyuan.common.vo.R;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;

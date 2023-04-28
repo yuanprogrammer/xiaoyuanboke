@@ -3,7 +3,7 @@
 <mapper namespace="com.xiaoyuan.front.mapper.CommonUserMapper">
 
     <!-- 根据ID查询用户数据 -->
-    <select id="getUserInfoById" parameterType="long" resultType="com.xiaoyuan.model.entity.CommonUser">
+    <select id="getUserInfoById" parameterType="long" resultType="com.xiaoyuan.common.pojo.CommonUser">
         select id, com_user_code, username, nickname, email, mobile_number, avatar
         from xy_common_user
         where id = #{id}
@@ -31,7 +31,7 @@
     </select>
 
     <!-- 通过账号和密码查询用户数据 -->
-    <select id="isPasswordCorrect" resultType="com.xiaoyuan.model.entity.CommonUser">
+    <select id="isPasswordCorrect" resultType="com.xiaoyuan.common.pojo.CommonUser">
         select id
         from xy_common_user
         where ( username = #{account} or email = #{account} or mobile_number = #{account} )

@@ -3,9 +3,9 @@ package com.xiaoyuan.back.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.xiaoyuan.model.entity.CommonUser;
-import com.xiaoyuan.model.param.UserQueryParam;
-import com.xiaoyuan.model.vo.CommonUserVo;
+import com.xiaoyuan.common.pojo.CommonUser;
+import com.xiaoyuan.common.param.UserQueryParam;
+import com.xiaoyuan.common.vo.CommonUserVo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 

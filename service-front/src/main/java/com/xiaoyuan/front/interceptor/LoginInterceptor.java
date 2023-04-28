@@ -2,7 +2,7 @@ package com.xiaoyuan.front.interceptor;
 
 import com.xiaoyuan.front.service.TokenService;
 import com.xiaoyuan.front.utils.StringThreadLocal;
-import com.xiaoyuan.model.constants.CookieConstant;
+import com.xiaoyuan.common.constants.CookieConstant;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

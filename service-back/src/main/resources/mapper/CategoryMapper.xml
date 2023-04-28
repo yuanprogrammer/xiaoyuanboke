@@ -3,13 +3,13 @@
 <mapper namespace="com.xiaoyuan.back.mapper.CategoryMapper">
 
     <!-- 自定义返回数据类型模板 -->
-    <resultMap id="categoryMap" type="com.xiaoyuan.model.vo.category.CategoryVo">
+    <resultMap id="categoryMap" type="com.xiaoyuan.common.vo.category.CategoryVo">
         <!-- 父级分类（ID、分类名称、文章总数） 单个 对象 -->
         <id property="id" column="id1"></id>
         <result property="name" column="name1"></result>
         <result property="count" column="count1"></result>
         <!-- 子分类（ID、分类名、文章总数） 多个 List集合 -->
-        <collection property="children" ofType="com.xiaoyuan.model.vo.category.CategoryVo" javaType="list">
+        <collection property="children" ofType="com.xiaoyuan.common.vo.category.CategoryVo" javaType="list">
             <id property="id" column="id2"></id>
             <result property="name" column="name2"></result>
             <result property="count" column="count2"></result>

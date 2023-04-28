@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xiaoyuan.back.mapper.SysRoleMapper">
-    <resultMap id="roleVoMap" type="com.xiaoyuan.model.vo.SysRoleVo">
+    <resultMap id="roleVoMap" type="com.xiaoyuan.common.vo.SysRoleVo">
         <id column="id" property="id"/>
         <result column="role_key" property="roleKey"/>
         <result column="role_name" property="roleName"/>
@@ -21,7 +21,7 @@
         </where>
     </select>
 
-    <update id="updatePermissions" parameterType="com.xiaoyuan.model.param.role.PermissionRoleParam">
+    <update id="updatePermissions" parameterType="com.xiaoyuan.common.param.role.PermissionRoleParam">
         update sys_role
         set permissions = JSON_ARRAY
         <choose>
@@ -37,7 +37,7 @@
         where role_key = #{roleKey}
     </update>
 
-    <insert id="insertRole" parameterType="com.xiaoyuan.model.entity.SysRole">
+    <insert id="insertRole" parameterType="com.xiaoyuan.common.pojo.SysRole">
         insert into sys_role(role_key, role_name, `describe`, permissions) value(
             #{roleKey}, #{roleName}, #{describe}, JSON_ARRAY
             <foreach collection="permissions" item="item" open="(" close=")" separator=",">

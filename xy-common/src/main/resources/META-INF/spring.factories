@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.xiaoyuan.common.log.config.InitAutoConfiguration,\
+  com.xiaoyuan.common.log.aspect.GlobalLogAspect

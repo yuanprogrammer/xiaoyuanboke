@@ -1,7 +1,7 @@
 package com.xiaoyuan.front.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.xiaoyuan.model.entity.ProblemFeedback;
+import com.xiaoyuan.common.pojo.ProblemFeedback;
 import org.springframework.stereotype.Repository;
 
 /**

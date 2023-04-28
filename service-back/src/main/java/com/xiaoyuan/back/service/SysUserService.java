@@ -1,14 +1,13 @@
 package com.xiaoyuan.back.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.xiaoyuan.model.common.PageVo;
-import com.xiaoyuan.model.entity.SysUser;
-import com.xiaoyuan.model.param.sysuser.SysUserLoginParam;
-import com.xiaoyuan.model.param.sysuser.SysUserParam;
-import com.xiaoyuan.model.param.sysuser.SysUserQueryParam;
-import com.xiaoyuan.model.param.sysuser.WeChatRegisterParam;
-import com.xiaoyuan.model.vo.R;
-import com.xiaoyuan.model.vo.sysuser.SysUserVo;
+import com.xiaoyuan.common.vo.PageVo;
+import com.xiaoyuan.common.pojo.SysUser;
+import com.xiaoyuan.common.param.sysuser.SysUserLoginParam;
+import com.xiaoyuan.common.param.sysuser.SysUserQueryParam;
+import com.xiaoyuan.common.param.sysuser.WeChatRegisterParam;
+import com.xiaoyuan.common.vo.R;
+import com.xiaoyuan.common.vo.sysuser.SysUserVo;
 
 import java.util.List;
 

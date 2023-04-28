@@ -1,7 +1,7 @@
 package com.xiaoyuan.front.aspect;
 
 import com.xiaoyuan.front.annotation.AddressRequestLimit;
-import com.xiaoyuan.model.vo.R;
+import com.xiaoyuan.common.vo.R;
 import net.jodah.expiringmap.ExpirationPolicy;
 import net.jodah.expiringmap.ExpiringMap;
 import org.aspectj.lang.ProceedingJoinPoint;

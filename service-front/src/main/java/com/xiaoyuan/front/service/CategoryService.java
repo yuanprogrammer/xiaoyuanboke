@@ -1,8 +1,8 @@
 package com.xiaoyuan.front.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.xiaoyuan.model.entity.Category;
-import com.xiaoyuan.model.vo.R;
+import com.xiaoyuan.common.pojo.Category;
+import com.xiaoyuan.common.vo.R;
 
 /**
  * FileName:    CategoryService

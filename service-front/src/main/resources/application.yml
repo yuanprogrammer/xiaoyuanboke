@@ -16,4 +16,4 @@ mybatis-plus:
   global-config:
     db-config:
       table-prefix: xy_
-  type-aliases-package: com.xiaoyuan.model.entity
+  type-aliases-package: com.xiaoyuan.common.entity

@@ -2,11 +2,10 @@ package com.xiaoyuan.front.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xiaoyuan.front.vo.param.ArticleCommentParam;
-import com.xiaoyuan.model.entity.ArticleComment;
-import com.xiaoyuan.model.param.article.ArticleLikeParam;
-import com.xiaoyuan.model.param.article.CommentDeleteParam;
-import com.xiaoyuan.model.vo.PageUtils;
-import com.xiaoyuan.model.vo.R;
+import com.xiaoyuan.common.pojo.ArticleComment;
+import com.xiaoyuan.common.param.article.ArticleLikeParam;
+import com.xiaoyuan.common.param.article.CommentDeleteParam;
+import com.xiaoyuan.common.vo.R;
 
 /**
  * FileName:    ArticleCommentService

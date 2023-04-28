@@ -11,9 +11,7 @@
     <modules>
         <module>service-back</module>
         <module>service-front</module>
-        <module>xy-model</module>
-        <module>xy-common-util</module>
-        <module>xy-system</module>
+        <module>xy-common</module>
     </modules>
 
     <parent>

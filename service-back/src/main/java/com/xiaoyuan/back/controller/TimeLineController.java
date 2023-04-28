@@ -1,8 +1,8 @@
 package com.xiaoyuan.back.controller;
 
 import com.xiaoyuan.back.service.TimeLineService;
-import com.xiaoyuan.model.vo.TimeLineVo;
-import com.xiaoyuan.model.vo.R;
+import com.xiaoyuan.common.vo.TimeLineVo;
+import com.xiaoyuan.common.vo.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

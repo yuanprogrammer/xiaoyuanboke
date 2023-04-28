@@ -1,7 +1,7 @@
 package com.xiaoyuan.back.controller;
 
 import com.xiaoyuan.back.service.UserOperationService;
-import com.xiaoyuan.model.vo.R;
+import com.xiaoyuan.common.vo.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

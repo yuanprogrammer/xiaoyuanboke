@@ -1,9 +1,9 @@
 package com.xiaoyuan.back.controller;
 
 import com.xiaoyuan.back.service.CategoryService;
-import com.xiaoyuan.model.entity.Category;
-import com.xiaoyuan.model.param.CategoryParam;
-import com.xiaoyuan.model.vo.R;
+import com.xiaoyuan.common.pojo.Category;
+import com.xiaoyuan.common.param.CategoryParam;
+import com.xiaoyuan.common.vo.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

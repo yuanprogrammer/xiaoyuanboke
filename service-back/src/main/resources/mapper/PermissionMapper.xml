@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xiaoyuan.back.mapper.SysPermissionMapper">
-    <resultMap id="permissionVoMap" type="com.xiaoyuan.model.vo.SysPermissionVo">
+    <resultMap id="permissionVoMap" type="com.xiaoyuan.common.vo.SysPermissionVo">
         <id column="id" property="id"/>
         <result column="mod_key" property="modKey"/>
         <result column="mod_name" property="modName"/>

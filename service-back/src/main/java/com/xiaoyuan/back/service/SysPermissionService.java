@@ -1,15 +1,15 @@
 package com.xiaoyuan.back.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.xiaoyuan.model.common.PageVo;
-import com.xiaoyuan.model.common.Pagination;
-import com.xiaoyuan.model.entity.SysAction;
-import com.xiaoyuan.model.entity.SysModule;
-import com.xiaoyuan.model.entity.SysPermission;
-import com.xiaoyuan.model.param.permission.*;
-import com.xiaoyuan.model.param.role.PermissionRoleParam;
-import com.xiaoyuan.model.vo.R;
-import com.xiaoyuan.model.vo.SysPermissionVo;
+import com.xiaoyuan.common.param.permission.*;
+import com.xiaoyuan.common.vo.PageVo;
+import com.xiaoyuan.common.vo.Pagination;
+import com.xiaoyuan.common.pojo.SysAction;
+import com.xiaoyuan.common.pojo.SysModule;
+import com.xiaoyuan.common.pojo.SysPermission;
+import com.xiaoyuan.common.param.role.PermissionRoleParam;
+import com.xiaoyuan.common.vo.R;
+import com.xiaoyuan.common.vo.SysPermissionVo;
 
 import java.util.List;
 

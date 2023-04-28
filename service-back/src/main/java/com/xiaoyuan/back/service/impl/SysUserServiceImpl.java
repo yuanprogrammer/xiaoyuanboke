@@ -8,23 +8,24 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xiaoyuan.back.mapper.SysUserMapper;
 import com.xiaoyuan.back.service.SysUserService;
-import com.xiaoyuan.model.common.PageVo;
-import com.xiaoyuan.model.constants.defaults.SystemDefaultConstants;
-import com.xiaoyuan.model.entity.SysUser;
-import com.xiaoyuan.model.enums.HttpStatusEnum;
-import com.xiaoyuan.model.param.sysuser.SysUserLoginParam;
-import com.xiaoyuan.model.param.sysuser.SysUserQueryParam;
-import com.xiaoyuan.model.param.sysuser.WeChatRegisterParam;
-import com.xiaoyuan.model.vo.R;
-import com.xiaoyuan.model.vo.sysuser.SysUserVo;
+import com.xiaoyuan.common.util.NetUtil;
+import com.xiaoyuan.common.vo.PageVo;
+import com.xiaoyuan.common.constants.defaults.SystemDefaultConstants;
+import com.xiaoyuan.common.pojo.SysUser;
+import com.xiaoyuan.common.enums.HttpStatusEnum;
+import com.xiaoyuan.common.param.sysuser.SysUserLoginParam;
+import com.xiaoyuan.common.param.sysuser.SysUserQueryParam;
+import com.xiaoyuan.common.param.sysuser.WeChatRegisterParam;
+import com.xiaoyuan.common.vo.R;
+import com.xiaoyuan.common.vo.sysuser.SysUserVo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
 
+@Slf4j
 @Service
-@Transactional
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
 
     @Override
@@ -46,6 +47,8 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
         StpUtil.login(sysUser.getId());
 
+        String remoteHost = NetUtil.getRemoteHost(NetUtil.getRequest());
+        log.info("IP地址：{}", remoteHost);
         HashMap<String, Object> map = new HashMap<>();
         map.put("token", StpUtil.getTokenInfo().getTokenValue());
 //        map.put("permissions", baseMapper.searchUserPermissions(sysUser.getId()));

@@ -2,10 +2,10 @@ package com.xiaoyuan.front.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
-import com.xiaoyuan.common_util.auth.JWTUtil;
+import com.xiaoyuan.common.util.JWTUtil;
 import com.xiaoyuan.front.service.TokenService;
 import com.xiaoyuan.front.vo.CommonUserVo;
-import com.xiaoyuan.model.constants.RedisConstantKey;
+import com.xiaoyuan.common.constants.RedisConstantKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;

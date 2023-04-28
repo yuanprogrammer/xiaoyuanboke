@@ -1,8 +1,8 @@
 package com.xiaoyuan.back.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.xiaoyuan.model.entity.SuggestFeedback;
-import com.xiaoyuan.model.vo.R;
+import com.xiaoyuan.common.pojo.SuggestFeedback;
+import com.xiaoyuan.common.vo.R;
 
 /**
  * FileName:    SuggestFeedbackService

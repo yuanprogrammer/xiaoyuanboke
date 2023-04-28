@@ -2,9 +2,9 @@ package com.xiaoyuan.front.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xiaoyuan.front.vo.param.HomeMessageParam;
-import com.xiaoyuan.model.entity.HomeMessage;
-import com.xiaoyuan.model.vo.PageUtils;
-import com.xiaoyuan.model.vo.R;
+import com.xiaoyuan.common.pojo.HomeMessage;
+import com.xiaoyuan.common.vo.PageUtils;
+import com.xiaoyuan.common.vo.R;
 
 /**
  * FileName:    HomeMessageService

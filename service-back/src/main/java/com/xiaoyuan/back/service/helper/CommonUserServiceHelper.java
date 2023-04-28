@@ -2,8 +2,8 @@ package com.xiaoyuan.back.service.helper;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.xiaoyuan.back.mapper.CommonUserMapper;
-import com.xiaoyuan.model.entity.CommonUser;
-import com.xiaoyuan.model.vo.CommonUserVo;
+import com.xiaoyuan.common.pojo.CommonUser;
+import com.xiaoyuan.common.vo.CommonUserVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

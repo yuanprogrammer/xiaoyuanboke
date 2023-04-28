@@ -6,13 +6,13 @@ import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.util.StrUtil;
 import com.xiaoyuan.back.service.SysUserService;
 import com.xiaoyuan.back.constants.WxConstants;
-import com.xiaoyuan.model.common.PageVo;
-import com.xiaoyuan.model.entity.SysUser;
-import com.xiaoyuan.model.param.sysuser.SysUserLoginParam;
-import com.xiaoyuan.model.param.sysuser.SysUserQueryParam;
-import com.xiaoyuan.model.param.sysuser.WeChatRegisterParam;
-import com.xiaoyuan.model.vo.R;
-import com.xiaoyuan.model.vo.sysuser.SysUserVo;
+import com.xiaoyuan.common.vo.PageVo;
+import com.xiaoyuan.common.pojo.SysUser;
+import com.xiaoyuan.common.param.sysuser.SysUserLoginParam;
+import com.xiaoyuan.common.param.sysuser.SysUserQueryParam;
+import com.xiaoyuan.common.param.sysuser.WeChatRegisterParam;
+import com.xiaoyuan.common.vo.R;
+import com.xiaoyuan.common.vo.sysuser.SysUserVo;
 import io.swagger.annotations.ApiOperation;
 import me.zhyd.oauth.config.AuthConfig;
 import me.zhyd.oauth.model.AuthCallback;
@@ -23,13 +23,10 @@ import me.zhyd.oauth.request.AuthWeChatOpenRequest;
 import me.zhyd.oauth.utils.AuthStateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 @RestController

@@ -1,12 +1,12 @@
 package com.xiaoyuan.front.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.xiaoyuan.common_util.match.StringMatch;
+import com.xiaoyuan.common.util.StringMatch;
 import com.xiaoyuan.front.mapper.ProblemFeedbackMapper;
 import com.xiaoyuan.front.service.ProblemFeedbackService;
 import com.xiaoyuan.front.vo.param.ProblemFeedbackParam;
-import com.xiaoyuan.model.entity.ProblemFeedback;
-import com.xiaoyuan.model.vo.R;
+import com.xiaoyuan.common.pojo.ProblemFeedback;
+import com.xiaoyuan.common.vo.R;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

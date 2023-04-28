@@ -1,8 +1,8 @@
 package com.xiaoyuan.back.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.xiaoyuan.model.entity.UserOperation;
-import com.xiaoyuan.model.vo.UserOperationVo;
+import com.xiaoyuan.common.pojo.UserOperation;
+import com.xiaoyuan.common.vo.UserOperationVo;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;

@@ -2,13 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xiaoyuan.back.mapper.SysUserMapper">
 
-    <resultMap id="SysUserVoMap" type="com.xiaoyuan.model.vo.sysuser.SysUserVo">
+    <resultMap id="SysUserVoMap" type="com.xiaoyuan.common.vo.sysuser.SysUserVo">
         <result property="nickname" column="nickname"/>
         <result property="avatar" column="avatar"/>
         <result property="sysUserCode" column="sys_user_code"/>
         <result property="state" column="state"/>
         <result property="articleCount" column="article_count"/>
-        <collection property="roles" ofType="com.xiaoyuan.model.vo.SysRoleVo" javaType="java.util.List">
+        <collection property="roles" ofType="com.xiaoyuan.common.vo.SysRoleVo" javaType="java.util.List">
             <result column="role_name" property="roleName"/>
         </collection>
     </resultMap>

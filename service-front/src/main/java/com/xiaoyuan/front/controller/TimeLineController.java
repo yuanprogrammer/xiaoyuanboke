@@ -3,16 +3,12 @@ package com.xiaoyuan.front.controller;
 import com.xiaoyuan.front.service.ArticleService;
 import com.xiaoyuan.front.service.HomeMessageService;
 import com.xiaoyuan.front.service.TimeLineService;
-import com.xiaoyuan.model.vo.PageUtils;
-import com.xiaoyuan.model.vo.R;
+import com.xiaoyuan.common.vo.PageUtils;
+import com.xiaoyuan.common.vo.R;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
-import org.thymeleaf.context.WebContext;
-import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

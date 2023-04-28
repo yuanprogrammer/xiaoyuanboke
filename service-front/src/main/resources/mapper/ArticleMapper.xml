@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xiaoyuan.front.mapper.ArticleMapper">
 
-    <resultMap id="ArticleVoMap" type="com.xiaoyuan.model.vo.article.ArticleVo">
+    <resultMap id="ArticleVoMap" type="com.xiaoyuan.common.vo.article.ArticleVo">
         <id column="id" property="id"/>
         <result column="number" property="number"/>
         <result column="title" property="title"/>
@@ -20,7 +20,7 @@
         <result column="gmt_update" property="editTime"/>
     </resultMap>
 
-    <select id="findArticleList" parameterType="com.xiaoyuan.model.param.article.ArticleQueryParam" resultMap="ArticleVoMap">
+    <select id="findArticleList" parameterType="com.xiaoyuan.common.param.article.ArticleQueryParam" resultMap="ArticleVoMap">
         SELECT
         -- 文章表数据
         art.id as number,
@@ -70,7 +70,7 @@
     </select>
 
     <!-- 热门文章 -->
-    <select id="findHosts" parameterType="int" resultType="com.xiaoyuan.model.vo.article.RecommendArticleVo">
+    <select id="findHosts" parameterType="int" resultType="com.xiaoyuan.common.vo.article.RecommendArticleVo">
         select id as number, title
         from xy_article
         where deleted = 0
@@ -79,7 +79,7 @@
     </select>
 
     <!-- 最新文章 -->
-    <select id="findNews" parameterType="int" resultType="com.xiaoyuan.model.vo.article.RecommendArticleVo">
+    <select id="findNews" parameterType="int" resultType="com.xiaoyuan.common.vo.article.RecommendArticleVo">
         select id as number, title
         from xy_article
         where deleted = 0
@@ -118,7 +118,7 @@
     </update>
 
     <!-- 根据分类编号查询文章列表 -->
-    <select id="findCategoryArticleList" resultType="com.xiaoyuan.model.entity.Article">
+    <select id="findCategoryArticleList" resultType="com.xiaoyuan.common.pojo.Article">
         SELECT id,
                title,
                digest,
@@ -133,7 +133,7 @@
     <resultMap id="archivesMap" type="com.xiaoyuan.front.vo.ArchivesVo">
         <result column="time" property="archivesTime"></result>
         <result column="count" property="count"></result>
-        <collection property="articleList" ofType="com.xiaoyuan.model.vo.article.ArticleVo" javaType="list">
+        <collection property="articleList" ofType="com.xiaoyuan.common.vo.article.ArticleVo" javaType="list">
             <result column="id" property="number"></result>
             <result column="title" property="title"></result>
         </collection>

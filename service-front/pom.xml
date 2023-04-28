@@ -21,7 +21,7 @@
         <!-- 公共依赖 -->
         <dependency>
             <groupId>com.xiaoyuan</groupId>
-            <artifactId>xy-system</artifactId>
+            <artifactId>xy-common</artifactId>
             <version>1.0</version>
         </dependency>
         <!-- Web启动依赖 -->

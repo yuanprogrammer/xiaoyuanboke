@@ -1,7 +1,7 @@
 package com.xiaoyuan.back.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.xiaoyuan.model.entity.ArticleLike;
+import com.xiaoyuan.common.pojo.ArticleLike;
 import org.springframework.stereotype.Repository;
 
 /**

@@ -2,10 +2,10 @@ package com.xiaoyuan.front.controller;
 
 import com.xiaoyuan.front.annotation.CookieOperation;
 import com.xiaoyuan.front.service.CommonService;
-import com.xiaoyuan.model.constants.RedisConstantKey;
-import com.xiaoyuan.model.param.mail.SendMailCodeParam;
-import com.xiaoyuan.model.param.SendSmsCodeParam;
-import com.xiaoyuan.model.vo.R;
+import com.xiaoyuan.common.constants.RedisConstantKey;
+import com.xiaoyuan.common.param.mail.SendMailCodeParam;
+import com.xiaoyuan.common.param.SendSmsCodeParam;
+import com.xiaoyuan.common.vo.R;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

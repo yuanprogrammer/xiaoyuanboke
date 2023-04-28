@@ -2,12 +2,11 @@ package com.xiaoyuan.front.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xiaoyuan.front.vo.ArchivesVo;
-import com.xiaoyuan.model.entity.Article;
-import com.xiaoyuan.model.param.article.ArticleQueryParam;
-import com.xiaoyuan.model.param.article.CategoryQueryParam;
-import com.xiaoyuan.model.vo.PageUtils;
-import com.xiaoyuan.model.vo.R;
-import com.xiaoyuan.model.vo.article.RecommendArticleVo;
+import com.xiaoyuan.common.pojo.Article;
+import com.xiaoyuan.common.param.article.ArticleQueryParam;
+import com.xiaoyuan.common.param.article.CategoryQueryParam;
+import com.xiaoyuan.common.vo.R;
+import com.xiaoyuan.common.vo.article.RecommendArticleVo;
 
 import java.util.List;
 

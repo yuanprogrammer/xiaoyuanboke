@@ -2,8 +2,8 @@ package com.xiaoyuan.front.aspect;
 
 import com.xiaoyuan.front.annotation.CookieOperation;
 import com.xiaoyuan.front.utils.StringThreadLocal;
-import com.xiaoyuan.model.constants.CookieConstant;
-import com.xiaoyuan.model.constants.RedisConstantKey;
+import com.xiaoyuan.common.constants.CookieConstant;
+import com.xiaoyuan.common.constants.RedisConstantKey;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;

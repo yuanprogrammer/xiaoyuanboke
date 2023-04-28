@@ -1,10 +1,10 @@
 package com.xiaoyuan.back.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.xiaoyuan.model.entity.ProblemFeedback;
-import com.xiaoyuan.model.param.problem.ProblemQueryParam;
-import com.xiaoyuan.model.vo.ProblemFeedbackVo;
-import com.xiaoyuan.model.vo.R;
+import com.xiaoyuan.common.pojo.ProblemFeedback;
+import com.xiaoyuan.common.param.problem.ProblemQueryParam;
+import com.xiaoyuan.common.vo.ProblemFeedbackVo;
+import com.xiaoyuan.common.vo.R;
 
 /**
  * FileName:    ProblemFeedbackService

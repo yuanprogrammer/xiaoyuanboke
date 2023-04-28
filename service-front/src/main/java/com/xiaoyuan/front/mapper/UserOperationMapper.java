@@ -1,7 +1,7 @@
 package com.xiaoyuan.front.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.xiaoyuan.model.entity.UserOperation;
+import com.xiaoyuan.common.pojo.UserOperation;
 import org.springframework.stereotype.Repository;
 
 /**

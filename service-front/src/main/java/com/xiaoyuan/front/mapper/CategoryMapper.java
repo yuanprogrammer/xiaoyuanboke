@@ -2,7 +2,7 @@ package com.xiaoyuan.front.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.xiaoyuan.front.vo.CategoryVo;
-import com.xiaoyuan.model.entity.Category;
+import com.xiaoyuan.common.pojo.Category;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

@@ -1,9 +1,9 @@
 package com.xiaoyuan.front.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.xiaoyuan.model.entity.ArticleCollect;
-import com.xiaoyuan.model.param.article.ArticleLikeParam;
-import com.xiaoyuan.model.vo.R;
+import com.xiaoyuan.common.pojo.ArticleCollect;
+import com.xiaoyuan.common.param.article.ArticleLikeParam;
+import com.xiaoyuan.common.vo.R;
 
 /**
  * FileName:    ArticleCollectService

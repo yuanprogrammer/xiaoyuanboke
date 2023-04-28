@@ -3,12 +3,12 @@ package com.xiaoyuan.front.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xiaoyuan.front.vo.CommonUserVo;
 import com.xiaoyuan.front.vo.param.CodeParam;
-import com.xiaoyuan.model.param.comuser.LoginParam;
-import com.xiaoyuan.model.entity.CommonUser;
-import com.xiaoyuan.model.param.comuser.FindPasswordParam;
-import com.xiaoyuan.model.param.comuser.ModifyPasswordParam;
-import com.xiaoyuan.model.param.comuser.RegisterParam;
-import com.xiaoyuan.model.vo.R;
+import com.xiaoyuan.common.param.comuser.LoginParam;
+import com.xiaoyuan.common.pojo.CommonUser;
+import com.xiaoyuan.common.param.comuser.FindPasswordParam;
+import com.xiaoyuan.common.param.comuser.ModifyPasswordParam;
+import com.xiaoyuan.common.param.comuser.RegisterParam;
+import com.xiaoyuan.common.vo.R;
 
 /**
  * FileName:    CommonUserService

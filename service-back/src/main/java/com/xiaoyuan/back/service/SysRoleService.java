@@ -1,14 +1,14 @@
 package com.xiaoyuan.back.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.xiaoyuan.model.common.PageVo;
-import com.xiaoyuan.model.entity.SysRole;
-import com.xiaoyuan.model.param.role.DeleteRoleParam;
-import com.xiaoyuan.model.param.role.InsertRoleParam;
-import com.xiaoyuan.model.param.role.PermissionRoleParam;
-import com.xiaoyuan.model.param.role.RoleQueryParam;
-import com.xiaoyuan.model.vo.R;
-import com.xiaoyuan.model.vo.SysRoleVo;
+import com.xiaoyuan.common.vo.PageVo;
+import com.xiaoyuan.common.pojo.SysRole;
+import com.xiaoyuan.common.param.role.DeleteRoleParam;
+import com.xiaoyuan.common.param.role.InsertRoleParam;
+import com.xiaoyuan.common.param.role.PermissionRoleParam;
+import com.xiaoyuan.common.param.role.RoleQueryParam;
+import com.xiaoyuan.common.vo.R;
+import com.xiaoyuan.common.vo.SysRoleVo;
 
 import java.util.List;
 

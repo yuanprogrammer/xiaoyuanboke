@@ -1,13 +1,12 @@
 package com.xiaoyuan.back.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.xiaoyuan.model.common.PageVo;
-import com.xiaoyuan.model.entity.CommonUser;
-import com.xiaoyuan.model.param.UserQueryParam;
-import com.xiaoyuan.model.param.sysuser.SysUserParam;
-import com.xiaoyuan.model.vo.CommonUserVo;
-import com.xiaoyuan.model.vo.PageUtils;
-import com.xiaoyuan.model.vo.R;
+import com.xiaoyuan.common.vo.PageVo;
+import com.xiaoyuan.common.pojo.CommonUser;
+import com.xiaoyuan.common.param.UserQueryParam;
+import com.xiaoyuan.common.param.sysuser.SysUserParam;
+import com.xiaoyuan.common.vo.CommonUserVo;
+import com.xiaoyuan.common.vo.R;
 
 import java.util.List;
 

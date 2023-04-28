@@ -1,7 +1,7 @@
 package com.xiaoyuan.front.vo;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.xiaoyuan.model.vo.article.ArticleVo;
+import com.xiaoyuan.common.vo.article.ArticleVo;
 import lombok.Data;
 
 import java.util.List;

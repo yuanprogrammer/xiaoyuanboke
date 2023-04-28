@@ -1,9 +1,9 @@
 package com.xiaoyuan.back.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.xiaoyuan.model.entity.TimeLine;
-import com.xiaoyuan.model.vo.TimeLineVo;
-import com.xiaoyuan.model.vo.R;
+import com.xiaoyuan.common.pojo.TimeLine;
+import com.xiaoyuan.common.vo.TimeLineVo;
+import com.xiaoyuan.common.vo.R;
 
 /**
  * FileName:    TimeLineService

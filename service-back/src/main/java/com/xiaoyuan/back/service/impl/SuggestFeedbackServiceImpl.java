@@ -5,9 +5,9 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xiaoyuan.back.mapper.SuggestFeedbackMapper;
 import com.xiaoyuan.back.service.SuggestFeedbackService;
-import com.xiaoyuan.model.entity.SuggestFeedback;
-import com.xiaoyuan.model.vo.PageUtils;
-import com.xiaoyuan.model.vo.R;
+import com.xiaoyuan.common.pojo.SuggestFeedback;
+import com.xiaoyuan.common.vo.PageUtils;
+import com.xiaoyuan.common.vo.R;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

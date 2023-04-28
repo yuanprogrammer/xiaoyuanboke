@@ -39,5 +39,5 @@ mybatis-plus:
     map-underscore-to-camel-case: true
     # 打印SQL语句
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-  type-aliases-package: com.xiaoyuan.model.entity
+  type-aliases-package: com.xiaoyuan.common.entity
 

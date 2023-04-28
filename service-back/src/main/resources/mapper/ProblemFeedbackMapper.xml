@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xiaoyuan.back.mapper.ProblemFeedbackMapper">
 
-    <resultMap id="problemVoMap" type="com.xiaoyuan.model.vo.ProblemFeedbackVo">
+    <resultMap id="problemVoMap" type="com.xiaoyuan.common.vo.ProblemFeedbackVo">
         <id column="id" property="id"/>
         <result column="email" property="email"/>
         <result column="problem" property="problem"/>

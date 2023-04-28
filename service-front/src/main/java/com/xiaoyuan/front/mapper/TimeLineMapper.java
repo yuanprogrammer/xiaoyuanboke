@@ -1,7 +1,7 @@
 package com.xiaoyuan.front.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.xiaoyuan.model.entity.TimeLine;
+import com.xiaoyuan.common.pojo.TimeLine;
 import org.springframework.stereotype.Repository;
 
 /**

@@ -1,26 +1,21 @@
 package com.xiaoyuan.back.service.impl;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.TypeReference;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xiaoyuan.back.mapper.CommonUserMapper;
 import com.xiaoyuan.back.service.CommonUserService;
-import com.xiaoyuan.model.common.PageVo;
-import com.xiaoyuan.model.entity.CommonUser;
-import com.xiaoyuan.model.param.UserQueryParam;
-import com.xiaoyuan.model.param.sysuser.SysUserParam;
-import com.xiaoyuan.model.vo.CommonUserVo;
-import com.xiaoyuan.model.enums.HttpStatusEnum;
-import com.xiaoyuan.model.vo.R;
+import com.xiaoyuan.common.vo.PageVo;
+import com.xiaoyuan.common.pojo.CommonUser;
+import com.xiaoyuan.common.param.UserQueryParam;
+import com.xiaoyuan.common.param.sysuser.SysUserParam;
+import com.xiaoyuan.common.vo.CommonUserVo;
+import com.xiaoyuan.common.vo.R;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
 import java.util.List;
 
 /**

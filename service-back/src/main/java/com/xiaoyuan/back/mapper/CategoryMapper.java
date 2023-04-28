@@ -1,9 +1,9 @@
 package com.xiaoyuan.back.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.xiaoyuan.model.entity.Category;
-import com.xiaoyuan.model.vo.category.CategoryParentVo;
-import com.xiaoyuan.model.vo.category.CategoryVo;
+import com.xiaoyuan.common.pojo.Category;
+import com.xiaoyuan.common.vo.category.CategoryParentVo;
+import com.xiaoyuan.common.vo.category.CategoryVo;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
