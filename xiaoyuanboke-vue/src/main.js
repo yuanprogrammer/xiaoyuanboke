@@ -16,16 +16,13 @@ import 'element-ui/lib/theme-chalk/index.css'
 import '@/icons' // icon
 import '@/permission' // permission control
 
-// import leMarkdownEditor from 'le-markdown-editor'
-// import LemonIMUI from 'lemon-imui';
-// import 'lemon-imui/dist/index.css';
+import leMarkdownEditor from 'le-markdown-editor'
 
 
-// Vue.use(leMarkdownEditor)
+Vue.use(leMarkdownEditor)
 
 Vue.use(ElementUI)
 
-// Vue.use(LemonIMUI);
 
 Vue.config.productionTip = false
 // 全局WebSocket
