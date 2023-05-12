@@ -1,6 +1,6 @@
 package com.xiaoyuan.common.util;
 
-public class NumberConverterUtil {
+public class ConverterUtil {
 
     public static String viewNumberFormat(Integer number) {
         if (number < 10000) {

@@ -4,6 +4,7 @@ import cn.dev33.satoken.annotation.SaCheckPermission;
 import cn.dev33.satoken.annotation.SaMode;
 import cn.hutool.core.util.StrUtil;
 import com.xiaoyuan.back.service.ArticleService;
+import com.xiaoyuan.back.task.TaskProcessor;
 import com.xiaoyuan.common.annotation.IsAdmin;
 import com.xiaoyuan.common.param.ArticleParam;
 import com.xiaoyuan.common.param.article.ArticleQueryParam;
@@ -31,14 +32,18 @@ public class ArticleController {
     @Autowired
     private ArticleService articleService;
 
+    @Autowired
+    private TaskProcessor taskProcessor;
+
     @PostMapping("publish")
     @SaCheckPermission(value = {"ARTICLE:PUBLISH"}, mode = SaMode.OR)
     public R publishArticle(@RequestBody ArticleParam articleParam) {
         if (StrUtil.isEmpty(articleParam.getPublishTime())) {
-            return articleService.insert(articleParam);
+            return articleService.publish(articleParam) == 1 ? R.success("发布成功！") : R.fail("发布失败！");
         }else {
-//            return schedulerService.publishArticle(articleParam);
-            return R.fail("定时发布功能暂时关闭");
+            taskProcessor.startArticleTask(articleParam.getPublishTime(), articleParam);
+            return R.success();
+//            return R.fail("定时发布功能暂时关闭");
         }
     }
 

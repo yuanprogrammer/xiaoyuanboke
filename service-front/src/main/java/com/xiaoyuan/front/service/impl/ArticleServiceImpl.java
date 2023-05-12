@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.xiaoyuan.common.util.EncryptionAlgorithmUtil;
 import com.xiaoyuan.common.util.DateConverterUtil;
-import com.xiaoyuan.common.util.NumberConverterUtil;
+import com.xiaoyuan.common.util.ConverterUtil;
 import com.xiaoyuan.common.util.StringMatch;
 import com.xiaoyuan.front.mapper.ArticleContentMapper;
 import com.xiaoyuan.front.mapper.ArticleMapper;
@@ -72,7 +72,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
 
     @Override
     public String findViewCount() {
-        return NumberConverterUtil.viewNumberFormat(this.baseMapper.findViewCount());
+        return ConverterUtil.viewNumberFormat(this.baseMapper.findViewCount());
     }
 
     @Override

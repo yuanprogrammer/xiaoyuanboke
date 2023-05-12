@@ -22,7 +22,12 @@ public interface ArticleService extends IService<Article> {
     /**
      * 发布文章
      */
-    R<String> insert(ArticleParam articleParam);
+    int publish(ArticleParam articleParam);
+
+    /**
+     * 定时发布文章
+     */
+    int schedulePublish(ArticleParam articleParam, Long authorId);
 
     /**
      * 文章分页查询

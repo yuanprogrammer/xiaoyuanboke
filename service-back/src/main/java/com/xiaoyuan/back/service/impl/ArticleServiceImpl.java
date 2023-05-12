@@ -84,43 +84,13 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     private CategoryMapper categoryMapper;
 
     @Override
-    public R<String> insert(ArticleParam articleParam) {
-        Article article = new Article();
-        article.setTitle(articleParam.getTitle()); // 标题
-        article.setCover(articleParam.getCover()); // 封面
-        // 提取摘要
-        if (articleParam.getDigest() != null) {
-            article.setDigest(articleParam.getDigest());
-        } else {
-            String digest = TextOperation.getTextFromHtml(articleParam.getArticleContentParam().getContentHtml());
-            article.setDigest(TextOperation.getArticleDigestFromText(digest)); // 摘要
-        }
-        article.setTags(articleParam.getTags()); // 标签
-        article.setAuthorId(StpUtil.getLoginIdAsLong());
+    public int publish(ArticleParam articleParam) {
+        return createArticle(articleParam, StpUtil.getLoginIdAsLong());
+    }
 
-        // 插入数据, 获取回传的文章编号（MyBatis-Plus内部封装）
-        articleMapper.insert(article);
-
-        /**
-         * 插入分类专栏数据到中间表
-         * [1,2,3] --> 循环插入
-         */
-        List<Integer> categoryList = articleParam.getCategoryList();
-        for (Integer categoryId : categoryList) {
-            ArticleCategory articleCategory = new ArticleCategory();
-            articleCategory.setCategoryId(categoryId);
-            articleCategory.setArticleId(article.getId());
-            articleCategoryMapper.insert(articleCategory);
-        }
-
-        // 插入markdown文本和HTML格式文本数据到中间表
-        ArticleContent articleContent = new ArticleContent();
-        articleContent.setArticleId(article.getId());
-        articleContent.setContent(articleParam.getArticleContentParam().getContent());
-        articleContent.setContentHtml(articleParam.getArticleContentParam().getContentHtml());
-        articleContentMapper.insert(articleContent);
-
-        return R.success("发布成功！");
+    @Override
+    public int schedulePublish(ArticleParam articleParam, Long authorId) {
+        return createArticle(articleParam, authorId);
     }
 
     @Override
@@ -290,8 +260,9 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         ArticlePublishVo articlePublishVo = new ArticlePublishVo();
         // 查询文章所属分类 return 分类编号列表
         List<Integer> categoryIds = articleCategoryMapper.findCategoryIdsByArticleId(id);
-        if (categoryIds.size() == 0) articlePublishVo.setCategorySelected(null);
-        else {
+        if (categoryIds.size() == 0) {
+            articlePublishVo.setCategorySelected(null);
+        } else {
             // 通过分类编号列表查询每个分类完整路径, 用于selected
             List<String> list = categoryMapper.getCompleteCategoryByIds(categoryIds);
             // 存储, 文章分类选中列表
@@ -311,5 +282,42 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         // 拷贝
         BeanUtils.copyProperties(article, articlePublishVo);
         return articlePublishVo;
+    }
+
+    private int createArticle(ArticleParam articleParam, Long authorId) {
+        Article article = new Article();
+        article.setTitle(articleParam.getTitle()); // 标题
+        article.setCover(articleParam.getCover()); // 封面
+        // 提取摘要
+        if (articleParam.getDigest() != null) {
+            article.setDigest(articleParam.getDigest());
+        } else {
+            String digest = TextOperation.getTextFromHtml(articleParam.getArticleContentParam().getContentHtml());
+            article.setDigest(TextOperation.getArticleDigestFromText(digest)); // 摘要
+        }
+        article.setTags(articleParam.getTags()); // 标签
+        article.setAuthorId(authorId);
+
+        // 插入数据, 获取回传的文章编号（MyBatis-Plus内部封装）
+        articleMapper.insert(article);
+
+        /**
+         * 插入分类专栏数据到中间表
+         * [1,2,3] --> 循环插入
+         */
+        List<Integer> categoryList = articleParam.getCategoryList();
+        for (Integer categoryId : categoryList) {
+            ArticleCategory articleCategory = new ArticleCategory();
+            articleCategory.setCategoryId(categoryId);
+            articleCategory.setArticleId(article.getId());
+            articleCategoryMapper.insert(articleCategory);
+        }
+
+        // 插入markdown文本和HTML格式文本数据到中间表
+        ArticleContent articleContent = new ArticleContent();
+        articleContent.setArticleId(article.getId());
+        articleContent.setContent(articleParam.getArticleContentParam().getContent());
+        articleContent.setContentHtml(articleParam.getArticleContentParam().getContentHtml());
+        return articleContentMapper.insert(articleContent);
     }
 }
