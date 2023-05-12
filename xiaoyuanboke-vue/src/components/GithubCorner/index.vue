@@ -1,5 +1,5 @@
 <template>
-  <a href="https://gitee.com/yuandewei/xiaoyuan-blog-platform" target="_blank" class="github-corner"
+  <a href="https://github.com/yuanprogrammer/xiaoyuanboke" target="_blank" class="github-corner"
      aria-label="View source on Github">
     <svg
       width="80"
